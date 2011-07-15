@@ -8,6 +8,10 @@ class InviterController {
 
     def invite = {
 
+        def providers = [ 'Facebook', 'Gmail', 'Yahoo', 'Windows Live' ]
+
+        [ providers: providers ]
+
     }
 
     def contacts = {
