@@ -61,13 +61,13 @@ class GmailInviterService {
                 contacts.entry.each { entry ->
                     entry.email.@address.each{ email ->
                         def contact = [ : ]
-                        contact.name = entry.title
+                        if( entry.title ){
+                            contact.name = entry.title
+                        }
                         contact.address = email
                         parsedContacts << contact
                     }
                 }
-
-                parsedContacts = parsedContacts.sort{ it.name }
 
             }
             parsedContacts

@@ -3,7 +3,7 @@
   <body>
         <ul>
             <g:each in="${ contacts }" var="contact">
-                <li>${ contact.email } ${ it.name ? '(' + it.name + ')' : '' } ) </li>
+                <li>${ contact.address } ${ contact.name ? '(' + contact.name + ')' : '' }</li>
             </g:each>
         </ul>
   </body>
