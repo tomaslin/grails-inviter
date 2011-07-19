@@ -16,14 +16,18 @@ class InviterController {
 
     def contacts = {
 
-        def service = grailsApplication.mainContext.getBean( "${params.provider as String}InviterService" )
+        def serviceName = "${ params.provider as String }InviterService"
+        serviceName = serviceName[0].toString().toLowerCase() + serviceName[1..serviceName.length() -1 ]
+        def service = grailsApplication.mainContext.getBean( serviceName )
+        def contacts
 
-        def ( authenticated, authToken ) = login( params.username as String, params.password as String )
+        def ( authenticated, authToken ) = service.login( params.username as String, params.password as String )
 
         if( !authenticated ){
 
-        } else {
-            def contacts = service.getContacts( authToken )
+        } else
+        {
+            contacts = service.getContacts( authToken )
         }
 
         [ contacts: contacts ]

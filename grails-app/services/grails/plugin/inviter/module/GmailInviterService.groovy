@@ -44,9 +44,9 @@ class GmailInviterService {
         return [authenticated, authToken]
     }
 
-    def getContacts(username, password, authToken) {
+    def getContacts(authToken) {
 
-        def contacts = false
+        def parsedContacts = false
 
         withHttp(uri: Url) {
             get(
@@ -54,11 +54,24 @@ class GmailInviterService {
                     query: ['max-results': 10000],
                     headers: [Authorization: "GoogleLogin auth=${authToken}"]
             ) { resp, reader ->
-                contacts = XML.parse(reader.text)
+
+                def contacts = XML.parse(reader.text)
+                parsedContacts = []
+
+                contacts.entry.each { entry ->
+                    entry.email.@address.each{ email ->
+                        def contact = [ : ]
+                        contact.name = entry.title
+                        contact.address = email
+                        parsedContacts << contact
+                    }
+                }
+
+                parsedContacts = parsedContacts.sort{ it.name }
+
             }
+            parsedContacts
         }
 
-        contacts
     }
-
 }
