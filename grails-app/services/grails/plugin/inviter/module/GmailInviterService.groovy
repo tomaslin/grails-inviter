@@ -55,19 +55,27 @@ class GmailInviterService {
                     headers: [Authorization: "GoogleLogin auth=${authToken}"]
             ) { resp, reader ->
 
-                def contacts = XML.parse(reader.text)
-                parsedContacts = []
+                def contactsXml = XML.parse(reader.text)
+                def contactList = []
+				def contactListWithoutNames = []
 
-                contacts.entry.each { entry ->
+                contactsXml.entry.each { entry ->
                     entry.email.@address.each{ email ->
                         def contact = [ : ]
-                        if( entry.title ){
-                            contact.name = entry.title
+                        if( !entry.title?.toString().isEmpty() ){
+                            contact.name = entry.title.toString()
                         }
-                        contact.address = email
-                        parsedContacts << contact
+                        contact.address = email as String
+
+						if( contact.name ){
+							contactList << contact
+						} else {
+							contactListWithoutNames << contact
+						}
                     }
                 }
+
+			 	parsedContacts = contactList.sort{ it.name.toLowerCase() } + contactListWithoutNames.sort{ it.address }
 
             }
             parsedContacts
