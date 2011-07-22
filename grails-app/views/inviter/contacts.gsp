@@ -25,7 +25,7 @@ body {
 	height: 315px;
 	margin-right: 5px;
 	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-y: auto;
 	padding: 2px;
 	width: 721px;
 }
@@ -43,6 +43,9 @@ body {
 	height: 48px;
     margin-right: 21px;
     width: 128px;
+	font-size: 12px;
+    word-wrap: break-word;
+	overflow: hidden;
 }
 
 .friend.selected{
@@ -101,7 +104,7 @@ textarea{
 			<g:each in="${ contacts }" var="contact">
 
 				<div class="friend" data-email="${contact.address}" onclick="toggleAddress( '${contact.address}' )">
-					${contact.name ? contact.name : contact.address.replaceAll( '@', ' @')}
+					${contact.name ? contact.name : contact.address }
 				</div>
 
 			</g:each>
