@@ -1,11 +1,9 @@
 package grails.plugin.inviter.module
 
-import groovyx.net.http.RESTClient
-import groovy.util.slurpersupport.GPathResult
 import static groovyx.net.http.ContentType.URLENC
 import grails.converters.XML
 
-class GmailInviterService {
+class GmailInviterService extends BaseService {
 
     static transactional = true
     static Url = "https://www.google.com"
