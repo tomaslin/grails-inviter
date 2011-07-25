@@ -54,23 +54,32 @@ class GmailInviterService {
                     query: ['max-results': 10000],
                     headers: [Authorization: "GoogleLogin auth=${authToken}"]
             ) { resp, reader ->
-
                 def contactsXml = XML.parse(reader.text)
                 def contactList = []
 				def contactListWithoutNames = []
 
-                contactsXml.entry.each { entry ->
-                    entry.email.@address.each{ email ->
-                        def contact = [ : ]
-                        if( !entry.title?.toString().isEmpty() ){
-                            contact.name = entry.title.toString()
-                        }
-                        contact.address = email as String
+				def addedContacts = []
 
-						if( contact.name ){
-							contactList << contact
-						} else {
-							contactListWithoutNames << contact
+                contactsXml.entry.each { entry ->
+
+                    entry.email.each{ email ->
+
+						def address = email.@address as String
+
+						if( email.@primary == 'true' && !addedContacts.contains( address ) ){
+							def contact = [ : ]
+							if( !entry.title?.toString().isEmpty() ){
+								contact.name = entry.title.toString()
+							}
+							contact.address = address
+
+							if( contact.name ){
+								contactList << contact
+							} else {
+								contactListWithoutNames << contact
+							}
+
+							addedContacts.add( address )
 						}
                     }
                 }

@@ -62,12 +62,13 @@ body {
 textarea {
 	height: 80px;
 	width: 721px;
-	padding: 2px
+	padding: 6px;
 }
 
 </style>
 
 <script>
+
 
 	var addresses = [];
 	var FILTER_BLANK = 'start typing a name';
@@ -101,27 +102,80 @@ textarea {
 
 	$(document).ready(function() {
 
-		$( '.friends div' ).click( function() {
-		   	toggleAddress( $(this).attr('data-email') );
+		$('.friends div').click(function() {
+			toggleAddress($(this).attr('data-email'));
 		});
 
-		$( '#filterField' ).focus( function() {
-			if( $('#filterField' ).val() == FILTER_BLANK ){
-				$('#filterField').val( '' )
+		$('#filterField').focus(function() {
+			if ($('#filterField').val() == FILTER_BLANK) {
+				$('#filterField').val('')
 			}
 		})
 
-		$( '#filterField' ).focusout( function() {
-			if( $('#filterField' ).val() == '' ){
-				$('#filterField').val( FILTER_BLANK )
+		$('#filterField').focusout(function() {
+			if ($('#filterField').val() == '') {
+				$('#filterField').val(FILTER_BLANK)
 			}
 		})
 
+		$('#filterField').bindWithDelay( 'keyup', function() {
 
-		$('#filterField').val( FILTER_BLANK )
+			var filterVal = $('#filterField').val()
+
+			if (filterVal == '') {
+
+				$('.friends div').show()
+
+			} else if (filterVal.length > 0) {
+
+				var rgx = new RegExp(filterVal, "i");
+
+				$('.friends div').each(function() {
+					($(this).text().search(rgx) < 0 && $(this).attr('data-email').search(rgx) < 0) ? $(this).hide() : $(this).show();
+				});
+
+			}
+
+		}, 500 );
+
+		$('#filterField').val(FILTER_BLANK)
 
 	});
 
+	/*
+	bindWithDelay jQuery plugin
+	Author: Brian Grinstead
+	MIT license: http://www.opensource.org/licenses/mit-license.php
+	http://github.com/bgrins/bindWithDelay
+	http://briangrinstead.com/files/bindWithDelay
+	*/
+
+	(function($) {
+	$.fn.bindWithDelay = function( type, data, fn, timeout, throttle ) {
+		var wait = null;
+		var that = this;
+
+		if ( $.isFunction( data ) ) {
+			throttle = timeout;
+			timeout = fn;
+			fn = data;
+			data = undefined;
+		}
+
+		function cb() {
+			var e = $.extend(true, { }, arguments[0]);
+			var throttler = function() {
+				wait = null;
+				fn.apply(that, [e]);
+			};
+
+			if (!throttle) { clearTimeout(wait); }
+			if (!throttle || !wait) { wait = setTimeout(throttler, timeout); }
+		}
+
+		return this.bind(type, data, cb);
+	}
+	})(jQuery);
 
 </script>
 
@@ -131,7 +185,7 @@ textarea {
 		Sorry, this page requires JavaScript to work.
 	</noscript>
 
-	<h2>Invite Friends</h2>
+	<h2>Pick Friends</h2>
 
 	<div id="filter">Find Friends: <g:textField name="filterField" id="filterField" value=""></g:textField>
 
@@ -145,10 +199,11 @@ textarea {
 		</g:each>
 	</div>
 
+	<h2>Add A Personal Message</h2>
+
 	<g:form action="sendInvite">
 		<g:hiddenField name="provider" value="${provider}"/>
 		<g:hiddenField name="addresses" value=""/>
-		<label for="message">Add a personal message</label><br/>
 		<g:textArea name="message"/><br/>
 		<g:actionSubmit value="Invite Friends"></g:actionSubmit>
 	</g:form>
