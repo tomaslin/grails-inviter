@@ -3,9 +3,11 @@ package grails.plugin.inviter.module
 import static groovyx.net.http.ContentType.URLENC
 import grails.converters.XML
 
-class GmailInviterService extends BaseService {
+class GmailInviterService {
 
     static transactional = true
+
+	static showCustomLogin = false
     static Url = "https://www.google.com"
 
     def login(email, password) {
@@ -38,8 +40,8 @@ class GmailInviterService extends BaseService {
 
             }
         }
-
         return [authenticated, authToken]
+
     }
 
     def getContacts(authToken) {
