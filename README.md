@@ -54,12 +54,28 @@ Click on the About tab for your application, you will see your key and secret in
 
 add these to config.groovy as
 
-	grails.plugins.inviter.facebook.key = 'your app id'
-	grails.plugins.inviter.facebook.secret = 'your app secret'
+	grails.plugins.inviter.facebook.key = 'your APP ID'
+	grails.plugins.inviter.facebook.secret = 'your App Secret'
 
 
 Google
 ------
+
+You will need to add your domain to google by going to [Manage your Domains](https://www.google.com/accounts/ManageDomains)
+
+Add your domain and go through the validation step. This would involve adding a meta tag to your site's index page.
+
+Once you have added and verified your domain, click on Manage blah.example.com. 
+
+You will see your consumer key and secret in the form:
+
+	OAuth Consumer Key: 	inviter.cloudfoundry.com
+	OAuth Consumer Secret: 	mIE865434SREFEJ9BYoz0k9 
+
+add these to config.groovy as
+
+	grails.plugins.inviter.google.key = 'your oAuth Consumer Key'
+	grails.plugins.inviter.google.secret = 'your oAuth Consumer Secret'
 
 Yahoo
 -----
