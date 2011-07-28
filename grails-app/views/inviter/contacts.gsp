@@ -50,6 +50,10 @@ body {
 	cursor: pointer
 }
 
+.friend img{
+	float:left
+}
+
 .friend.selected {
 	background: -moz-linear-gradient(center top, #63ABF7, #5E99CD) repeat scroll 0 0 transparent;
 	background-color: #63ABF7;
@@ -194,6 +198,9 @@ textarea {
 	<div class="friends">
 		<g:each in="${ contacts }" var="contact">
 			<div class="friend" data-email="${contact.address}">
+				<g:if test="${contact.photo}">
+					<img src="${contact.photo}"/>
+				</g:if>
 				${contact.name ? contact.name : contact.address}
 			</div>
 		</g:each>

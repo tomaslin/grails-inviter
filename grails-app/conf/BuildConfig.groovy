@@ -27,6 +27,8 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
 		build "org.scribe:scribe:1.2.1"
+		runtime "org.scribe:scribe:1.2.1"
+
 
         // runtime 'mysql:mysql-connector-java:5.1.13'
     }

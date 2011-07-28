@@ -8,39 +8,32 @@ class InviterController {
 
     def invite = {
 
-        def providers = [ 'Facebook', 'Gmail', 'Yahoo', 'Windows Live' ]
+		def service = resolveService( params.provider )
 
-        [ providers: providers ]
-
-    }
-
-    def contacts = {
-
-        def serviceName = "${ params.provider as String }InviterService"
-        serviceName = serviceName[0].toString().toLowerCase() + serviceName[1..serviceName.length() -1 ]
-        def service = grailsApplication.mainContext.getBean( serviceName )
-        def contacts
-
-        def ( authenticated, authToken ) = service.login( params.username as String, params.password as String )
-
-        if( !authenticated ){
-
-        } else
-        {
-            contacts = service.getContacts( authToken )
-        }
-
-        [ contacts: contacts ]
+		if( service.usesOAuth ){
+		 	redirect( url: service.getLoginUrl( createLink( action:'contacts', controller:'inviter', absolute:'true', params:[ provider: params.provider ] ) ) )
+		}
 
     }
 
 	def sendInvites = {
 
-		def addresses = params.addresses.split( ';' )
+	}
 
-		addresses.each{
+	def contacts = {
 
-		}
+		def service = resolveService( params.provider )
+		def authToken = service.getAccessToken( params )
+		def contacts = service.getContacts( authToken )
+		render( view: '/inviter/contacts', model: [contacts:contacts], plugin:'inviter' )
+
+	}
+
+	private def resolveService( provider ){
+
+		def serviceName = "${ provider as String }InviterService"
+        serviceName = serviceName[0].toString().toLowerCase() + serviceName[1..serviceName.length() -1 ]
+        grailsApplication.mainContext.getBean( serviceName )
 
 	}
 
