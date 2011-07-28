@@ -3,11 +3,13 @@ Grails Inviter Plugin
 
 The grails inviter plugin allows you to quickly import contacts from various social networks and mail providers into your application. 
 
+You can see it in action at http://inviter.cloudfoundry.com
+
 It is similar in functionality to the following social sharing plugins:
 
-*[OpenInviter](http://openinviter.com/) - PHP 
-*[Plaxo Social Widget](http://www.plaxo.com/api/widget) - Web  
-*[Jainrain Engage Social Sharing](http://www.janrain.com/products/engage/social-sharing) - Web 
+* [OpenInviter](http://openinviter.com/) - PHP 
+* [Plaxo Social Widget](http://www.plaxo.com/api/widget) - Web  
+* [Jainrain Engage Social Sharing](http://www.janrain.com/products/engage/social-sharing) - Web 
 
 The main difference of this plugin is that it uses Groovy / Grails and can be deeply integrated quickly and easily to any grails site. When possible, the plugin uses each platform's authentication to comply with the policies set by each provider ( rather than scrapping address book information ). 
 
@@ -15,21 +17,44 @@ Under the hood, the plugin uses the excellent [Scribe oAuth library](https://git
 
 The plugin currently supports the following networks
 
-*Facebook
-*Google
-*Yahoo
-*Twitter
-*LinkedIn
-*Windows Live
-*CSV Import
+* Facebook
+* Google
+* Yahoo
+* Twitter
+* LinkedIn
+* Windows Live
+* CSV Import
 
 Configuration
 =============
 
-You need to 
+The plugin requires credentials to be added to each provider used by your application. 
+
+
+Authentication Credentials
+==========================
+
+The following section describes where to get each authentication values needed for this application. You can use the config.groovy file included in this plugin as a reference. However, these authentication tokens only work with the inviter.cloudfoundry.com site. 
 
 Facebook
 --------
+
+You need to sign up to facebook and add the [Developer application](https://developers.facebook.com/apps)
+
+Create a new application. Make sure you enter the website you want to enable the inviter plugin via Web -> Site URL and Domain
+
+Click on the About tab for your application, you will see your key and secret in the form:
+
+App ID:
+	179259788807475
+App Secret:
+	159677e3ed32592a27ebcb0e6f590340
+
+add these to config.groovy as
+
+plugins.inviter.facebook.key = 'your app id'
+plugins.inviter.facebook.secret = 'your app secret'
+
 
 Google
 ------

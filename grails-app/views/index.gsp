@@ -8,7 +8,7 @@
 
 		<h3>Invite Friends Demo</h3>
 
-		<p> This is a demo of the grails inviter plugin.</p>
+		<p> This is a demo of the grails inviter plugin. To invite your friends, click on any of the icons below.</p>
 
 		<p>
 			<g:link controller="inviter" action="invite" params="${[provider:'Facebook']}">
