@@ -3,7 +3,7 @@ package grails.plugin.inviter.module
 import org.scribe.builder.api.YahooApi
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 
-class YahooInviterService extends BaseOAuthService {
+class YahooInviterService {
 
 	static transactional = true
 

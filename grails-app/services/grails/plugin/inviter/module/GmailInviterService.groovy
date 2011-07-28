@@ -1,94 +1,78 @@
 package grails.plugin.inviter.module
 
-import static groovyx.net.http.ContentType.URLENC
 import grails.converters.XML
+import org.scribe.builder.api.GoogleApi
+import org.scribe.builder.ServiceBuilder
+import org.scribe.model.Verifier
+import org.scribe.model.OAuthRequest
+import org.scribe.model.Verb
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+import org.scribe.model.Token
 
 class GmailInviterService {
 
-    static transactional = true
+	static transactional = true
+	static def authService
+	static usesOAuth = true
+ 	private static final String AUTHORIZE_URL = "https://www.google.com/accounts/OAuthAuthorizeToken?oauth_token=";
 
-	static showCustomLogin = false
-    static Url = "https://www.google.com"
+	def getAuthDetails(callbackUrl) {
+		if (!authService) {
+			authService = new ServiceBuilder().provider(GoogleApi.class)
+											  .apiKey(CH.config.grails.plugin.inviter.google.key as String)
+											  .apiSecret(CH.config.grails.plugin.inviter.google.secret as String)
+											  .callback(callbackUrl as String)
+											  .scope('https://www.google.com/m8/feeds')
+											  .build()
+		}
 
-    def login(email, password) {
+		Token requestToken = authService.getRequestToken();
 
-        def authenticated = false;
-        def authToken = ''
+		[ authUrl : AUTHORIZE_URL + requestToken.getToken(), requestToken : requestToken ]
 
-        withHttp(uri: Url) {
+	}
 
-            post(
-                    path: 'accounts/ClientLogin',
-                    body: [
-                            accountType: 'HOSTED_OR_GOOGLE',
-                            Email: email,
-                            Passwd: password,
-                            service: 'cp',
-                            source: 'Grails-Inviter-0.1'
-                    ],
-                    requestContentType: URLENC
-            ) { resp, reader ->
+	def getAccessToken( params, requestToken ){
+		requestToken = requestToken as Token
+		Verifier verifier = new Verifier( params.oauth_verifier )
+		authService.getAccessToken(requestToken, verifier);
+	}
 
-                if (resp.statusLine.statusCode == 200) {
-                    authenticated = true
-                    reader.text.eachLine {
-                        if (it.startsWith('Auth=')) {
-                            authToken = it.split('=')[1]
-                        }
-                    }
-                }
+	def getContacts(accessToken) {
 
-            }
-        }
-        return [authenticated, authToken]
+		OAuthRequest request = new OAuthRequest(Verb.GET, 'https://www.google.com/m8/feeds/contacts/default/full?max-results=10000');
+		authService.signRequest(accessToken, request)
+		def response = request.send();
 
-    }
+		def contactList = []
+		def contactListWithoutNames = []
+		def addedContacts = []
 
-    def getContacts(authToken) {
+		XML.parse(response.body).entry.each { entry ->
 
-        def parsedContacts = false
+			entry.email.each { email ->
 
-        withHttp(uri: Url) {
-            get(
-                    path: 'm8/feeds/contacts/default/full',
-                    query: ['max-results': 10000],
-                    headers: [Authorization: "GoogleLogin auth=${authToken}"]
-            ) { resp, reader ->
-                def contactsXml = XML.parse(reader.text)
-                def contactList = []
-				def contactListWithoutNames = []
+				def address = email.@address as String
 
-				def addedContacts = []
+				if (email.@primary == 'true' && !addedContacts.contains(address)) {
+					def contact = [:]
+					if (!entry.title?.toString().isEmpty()) {
+						contact.name = entry.title.toString()
+					}
+					contact.address = address
 
-                contactsXml.entry.each { entry ->
+					if (contact.name) {
+						contactList << contact
+					} else {
+						contactListWithoutNames << contact
+					}
 
-                    entry.email.each{ email ->
+					addedContacts.add(address)
+				}
+			}
+		}
 
-						def address = email.@address as String
+		contactList.sort { it.name.toLowerCase() } + contactListWithoutNames.sort { it.address }
+	}
 
-						if( email.@primary == 'true' && !addedContacts.contains( address ) ){
-							def contact = [ : ]
-							if( !entry.title?.toString().isEmpty() ){
-								contact.name = entry.title.toString()
-							}
-							contact.address = address
-
-							if( contact.name ){
-								contactList << contact
-							} else {
-								contactListWithoutNames << contact
-							}
-
-							addedContacts.add( address )
-						}
-                    }
-                }
-
-			 	parsedContacts = contactList.sort{ it.name.toLowerCase() } + contactListWithoutNames.sort{ it.address }
-
-            }
-            parsedContacts
-        }
-
-    }
 }

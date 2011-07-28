@@ -43,7 +43,7 @@ body {
 	display: inline-block;
 	height: 48px;
 	margin-right: 21px;
-	width: 128px;
+	width: 140px;
 	font-size: 12px;
 	word-wrap: break-word;
 	overflow: hidden;
@@ -51,7 +51,8 @@ body {
 }
 
 .friend img{
-	float:left
+	float:left;
+	padding-right:4px
 }
 
 .friend.selected {

@@ -4,7 +4,6 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.scribe.builder.api.FacebookApi
 import grails.converters.deep.JSON
 import org.scribe.model.Verifier
-import org.scribe.model.Token
 import org.scribe.builder.ServiceBuilder
 import org.scribe.model.OAuthRequest
 import org.scribe.model.Verb
@@ -15,17 +14,17 @@ class FacebookInviterService{
 	static def authService
 	static usesOAuth = true
 
-	def getLoginUrl( callbackUrl ){
+	def getAuthDetails( callbackUrl ){
 		if(!authService){
 			authService = new ServiceBuilder().provider( FacebookApi.class)
 							.apiKey( CH.config.grails.plugin.inviter.facebook.key as String )
 							.apiSecret( CH.config.grails.plugin.inviter.facebook.secret as String )
 							.callback( callbackUrl as String ).build()
 		}
-		authService.getAuthorizationUrl( null  )
+		[ authUrl : authService.getAuthorizationUrl( null  ), requestToken : null ]
 	}
 
-	def getAccessToken( params ){
+	def getAccessToken( params, requestToken ){
 		Verifier verifier = new Verifier( params.code as String );
 		authService.getAccessToken( null, verifier );
 	}
@@ -48,7 +47,7 @@ class FacebookInviterService{
 
 		}
 
-		contacts
+		contacts.sort { it.name.toLowerCase() }
 
 	}
 

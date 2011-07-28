@@ -11,7 +11,16 @@ class InviterController {
 		def service = resolveService( params.provider )
 
 		if( service.usesOAuth ){
-		 	redirect( url: service.getLoginUrl( createLink( action:'contacts', controller:'inviter', absolute:'true', params:[ provider: params.provider ] ) ) )
+
+			def authInfo = service.getAuthDetails( createLink( action:'contacts', controller:'inviter', absolute:'true', params:[ provider: params.provider ] ) )
+
+			if( authInfo.requestToken ){
+				session[ resolveRequestToken( params.provider ) ] = authInfo.requestToken
+			}
+
+			println session[ resolveRequestToken( params.provider ) ]
+
+		 	redirect( url: authInfo.authUrl )
 		}
 
     }
@@ -23,7 +32,7 @@ class InviterController {
 	def contacts = {
 
 		def service = resolveService( params.provider )
-		def authToken = service.getAccessToken( params )
+		def authToken = service.getAccessToken( params, session[ resolveRequestToken( params.provider ) ] )
 		def contacts = service.getContacts( authToken )
 		render( view: '/inviter/contacts', model: [contacts:contacts], plugin:'inviter' )
 
@@ -35,6 +44,10 @@ class InviterController {
         serviceName = serviceName[0].toString().toLowerCase() + serviceName[1..serviceName.length() -1 ]
         grailsApplication.mainContext.getBean( serviceName )
 
+	}
+
+	private def resolveRequestToken( provider ){
+		"${provider}_requestToken"
 	}
 
 }

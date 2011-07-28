@@ -6,19 +6,25 @@
 
 	<body>
 
-		<g:link controller="inviter" action="invite" params="${[provider:'Facebook']}">
-		 	<img src="${resource( dir:'images', file:'facebook.png' )}"/> Facebook
-		</g:link>
+		<h3>Invite Friends Demo</h3>
 
-		<g:link controller="inviter" action="invite" params="${[provider:'Gmail']}">
-			<img src="${resource( dir:'images', file:'google.png' )}"/> Gmail
-		</g:link>
+		<p> This is a demo of the grails inviter plugin.</p>
 
-		<g:link controller="inviter" action="invite" params="${[provider:'Yahoo']}">
-			<img src="${resource( dir:'images', file:'yahoo.png' )}"/> Yahoo
-		</g:link>
+		<p>
+			<g:link controller="inviter" action="invite" params="${[provider:'Facebook']}">
+				<img src="${resource( dir:'images', file:'facebook.png' )}"/> Facebook
+			</g:link>
+
+			<g:link controller="inviter" action="invite" params="${[provider:'Gmail']}">
+				<img src="${resource( dir:'images', file:'google.png' )}"/> Gmail
+			</g:link>
+
+			<g:link controller="inviter" action="invite" params="${[provider:'Yahoo']}">
+				<img src="${resource( dir:'images', file:'yahoo.png' )}"/> Yahoo
+			</g:link>
+		</p>
 
 		<hr/>
-		<i>Icons: <a href="http://icondock.com">Icon Dock</a> </i>
+		<i>Icons: <a href="http://icondock.com">Icon Dock</a>.</i>
 
 	</body></html>
