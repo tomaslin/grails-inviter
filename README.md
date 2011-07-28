@@ -54,8 +54,8 @@ Click on the About tab for your application, you will see your key and secret in
 
 add these to config.groovy as
 
-	plugins.inviter.facebook.key = 'your app id'
-	plugins.inviter.facebook.secret = 'your app secret'
+	grails.plugins.inviter.facebook.key = 'your app id'
+	grails.plugins.inviter.facebook.secret = 'your app secret'
 
 
 Google
