@@ -46,20 +46,16 @@ Create a new application. Make sure you enter the website you want to enable the
 Click on the About tab for your application, you will see your key and secret in the form:
 
 
-App ID:
-
+	App ID:
 	179259788807475
-
-App Secret:
-
+	
+	App Secret:	
 	159677e3ed32592a27ebcb0e6f590340
 
 add these to config.groovy as
 
-
-plugins.inviter.facebook.key = 'your app id'
-
-plugins.inviter.facebook.secret = 'your app secret'
+	plugins.inviter.facebook.key = 'your app id'
+	plugins.inviter.facebook.secret = 'your app secret'
 
 
 Google
