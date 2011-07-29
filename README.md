@@ -23,13 +23,11 @@ The plugin currently supports the following networks
 * Twitter
 * LinkedIn
 * Windows Live
-* CSV Import
 
 Configuration
 =============
 
 The plugin requires credentials to be added to each provider used by your application. 
-
 
 Authentication Credentials
 ==========================
@@ -82,6 +80,17 @@ Yahoo
 
 Twitter
 -------
+
+You will need to [add a new application](https://dev.twitter.com/apps/new) in Twitter
+
+
+	Consumer key 		G8rCU7AHBsZAbeLUAPddQ
+	Consumer secret 	BKbt1ygWu0q4xsLuJ8ddfYvegojVHz2GXn1Z5leoXN8
+
+add these to config.groovy as
+
+	grails.plugin.inviter.twitter.key = 'Your Consumer Key'
+	grails.plugin.inviter.secret = 'Your Consumer Secret'
 
 LinkedIn
 --------
