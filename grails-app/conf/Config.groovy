@@ -33,5 +33,8 @@ grails.plugin.inviter.google.key='inviter.cloudfoundry.com'
 grails.plugin.inviter.google.secret='mIE86xbAHcH5Cr2J9BYoz0k9'
 grails.plugin.inviter.linkedin.key='k25tupolcvf1'
 grails.plugin.inviter.linkedin.secret='KBtxC418sdmu5eur'
+grails.plugin.inviter.twitter.key='G8rCU7AHBsZAbeLUAP0i7Q'
+grails.plugin.inviter.twitter.secret='BKbt1ygWu0q4xsLuJ8bhjYvegojVHz2GXn1Z5leoXN8'
 
 grails.serverURL = 'http://inviter.cloudfoundry.com'
+

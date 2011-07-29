@@ -27,6 +27,18 @@
 				<img src="${resource( dir:'images', file:'yahoo.png' )}"/> Yahoo
 			</g:link>
 		</li>
+		<li>
+			<g:link controller="inviter" action="invite" params="${[provider:'Twitter']}">
+				<img src="${resource( dir:'images', file:'twitter.png' )}"/> Twitter
+			</g:link>
+		</li>
+
+		<li>
+			<g:link controller="inviter" action="invite" params="${[provider:'Linkedin']}">
+				<img src="${resource( dir:'images', file:'linkedin.png' )}"/> LinkedIn
+			</g:link>
+		</li>
+
 			</ul>
 		</p>
 

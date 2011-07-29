@@ -16,7 +16,7 @@ body {
 	height: 32px;
 	margin: 0;
 	padding: 6px 2px;
-	width: 721px;
+	width: 821px;
 }
 
 .friends {
@@ -27,7 +27,7 @@ body {
 	overflow-x: hidden;
 	overflow-y: auto;
 	padding: 2px;
-	width: 721px;
+	width: 821px;
 }
 
 .friend {
@@ -42,8 +42,8 @@ body {
 	vertical-align: top;
 	display: inline-block;
 	height: 48px;
-	margin-right: 21px;
-	width: 140px;
+	margin-right: 11px;
+	width: 164px;
 	font-size: 12px;
 	word-wrap: break-word;
 	overflow: hidden;
@@ -66,14 +66,13 @@ body {
 
 textarea {
 	height: 80px;
-	width: 721px;
+	width: 821px;
 	padding: 6px;
 }
 
 </style>
 
 <script>
-
 
 	var addresses = [];
 	var FILTER_BLANK = 'start typing a name';
