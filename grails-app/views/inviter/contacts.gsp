@@ -52,7 +52,9 @@ body {
 
 .friend img{
 	float:left;
-	padding-right:4px
+	padding-right:4px;
+	height:50px;
+	width:50px;
 }
 
 .friend.selected {
@@ -200,7 +202,9 @@ textarea {
 			<div class="friend" data-email="${contact.address}">
 				<g:if test="${contact.photo}">
 					<img src="${contact.photo}"/>
-				</g:if>
+				</g:if><g:else>
+					<img src="${resource( dir:'images', file:'empty.png' ) }"
+				</g:else>
 				${contact.name ? contact.name : contact.address}
 			</div>
 		</g:each>
