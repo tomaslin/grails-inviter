@@ -1,5 +1,7 @@
 package grails.plugin.inviter
 
+import org.scribe.model.Token
+
 class InviterController {
 
     def grailsApplication
@@ -15,10 +17,8 @@ class InviterController {
 			def authInfo = service.getAuthDetails( createLink( action:'contacts', controller:'inviter', absolute:'true', params:[ provider: params.provider ] ) )
 
 			if( authInfo.requestToken ){
-				session[ resolveRequestToken( params.provider ) ] = authInfo.requestToken
+				session[ "${params.provider}_requestToken" ] = authInfo.requestToken
 			}
-
-			println session[ resolveRequestToken( params.provider ) ]
 
 		 	redirect( url: authInfo.authUrl )
 		}
@@ -32,10 +32,29 @@ class InviterController {
 	def contacts = {
 
 		def service = resolveService( params.provider )
-		def authToken = service.getAccessToken( params, session[ resolveRequestToken( params.provider ) ] )
-		def contacts = service.getContacts( authToken )
-		render( view: '/inviter/contacts', model: [contacts:contacts], plugin:'inviter' )
+		def authToken = service.getAccessToken( params, session[ "${params.provider}_requestToken" ] )
+		session[ "${params.provider}_authToken" ] = authToken
 
+		def contacts = service.getContacts( authToken )
+		render( view: '/inviter/contacts', model: [contacts:contacts, provider: params.provider], plugin:'inviter' )
+
+	}
+
+	def photo = {
+		def service = resolveService( params.provider )
+		def photo = service.getPhoto( session[ "${params.provider}_authToken" ] as Token, params.photo )
+
+		response.contentType = photo.getHeader('Content-Type')
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(photo.stream));
+
+		byte[] buffer = new byte[ 4096 ];
+		int bytesRead;
+		while ( (bytesRead = reader.read(buffer)) != -1 ) {
+			response.outputStream.write( buffer, 0, bytesRead );
+		}
+		reader.close();
+		response.flushBuffer()
 	}
 
 	private def resolveService( provider ){
@@ -45,9 +64,4 @@ class InviterController {
         grailsApplication.mainContext.getBean( serviceName )
 
 	}
-
-	private def resolveRequestToken( provider ){
-		"${provider}_requestToken"
-	}
-
 }

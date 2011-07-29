@@ -61,6 +61,14 @@ class GmailInviterService {
 					}
 					contact.address = address
 
+					/*
+					def photoLink = entry.link.find { it.@rel.toString().endsWith('#photo') }
+					if (photoLink.@etag && photoLink.@href && photoLink.@href != '') {
+						contact.photo = photoLink.@href
+						contact.signPhoto = true
+					}
+					*/
+
 					if (contact.name) {
 						contactList << contact
 					} else {
@@ -73,6 +81,20 @@ class GmailInviterService {
 		}
 
 		contactList.sort { it.name.toLowerCase() } + contactListWithoutNames.sort { it.address }
+
+	}
+
+	def getPhoto( accessToken, photoUrl ){
+
+		def photo
+
+		OAuthRequest request = new OAuthRequest(Verb.GET, photoUrl);
+		authService.signRequest(accessToken, request)
+		def response = request.send();
+
+		return response
+
+
 	}
 
 }

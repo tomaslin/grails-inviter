@@ -85,3 +85,18 @@ Twitter
 
 LinkedIn
 --------
+
+You will need to get credentials by [adding a new application](https://www.linkedin.com/secure/developer?newapp=)
+
+Once you have completed the details for this page, you will get a key and pass, 
+	
+	API Key:
+	k25ddpolcvf1
+	Secret Key:
+	KBt3x418sdmu5eur
+
+Enter these to config.groovy as
+	
+	grails.plugins.inviter.linkedin.key = 'your API Key'
+	grails.plugins.inviter.linkedin.secret = 'your Secret Key'
+

@@ -1,5 +1,7 @@
 // configuration for plugin testing - will not be included in the plugin zip
 
+grails.config.locations = [ "file:${userHome}/Dropbox/inviter-config.groovy" ]
+
 log4j = {
     // Example of changing the log pattern for the default console
     // appender:
@@ -29,9 +31,5 @@ grails.plugin.inviter.yahoo.key='dj0yJmk9NEl6aU1zYnZhMHdLJmQ9WVdrOVdHRjBZVVI2Tm1
 grails.plugin.inviter.yahoo.secret= 'c7b26de0dd6877812056a8255fd3a31d1fe1ec66'
 grails.plugin.inviter.google.key='inviter.cloudfoundry.com'
 grails.plugin.inviter.google.secret='mIE86xbAHcH5Cr2J9BYoz0k9'
-grails.plugin.inviter.providers=[ 'facebook', 'gmail', 'yahoo' ]
-
-
-grails.plugin.cloudfoundry.username = "t.omaslin@gmail.com"
-grails.plugin.cloudfoundry.password = "hokXENNO"
-grails.serverURL = 'http://inviter.cloudfoundry.com'
+grails.plugin.inviter.linkedin.key='k25tupolcvf1'
+grails.plugin.inviter.linkedin.secret='KBtxC418sdmu5eur'
