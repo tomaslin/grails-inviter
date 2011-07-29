@@ -1,7 +1,5 @@
 package grails.plugin.inviter.module
 
-import grails.converters.XML
-import org.scribe.builder.api.GoogleApi
 import org.scribe.builder.ServiceBuilder
 import org.scribe.model.Verifier
 import org.scribe.model.OAuthRequest
