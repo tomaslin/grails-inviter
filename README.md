@@ -109,3 +109,18 @@ Enter these to config.groovy as
 	grails.plugins.inviter.linkedin.key = 'your API Key'
 	grails.plugins.inviter.linkedin.secret = 'your Secret Key'
 
+Windows Live
+============
+
+You will need to first create an application on the [Windows Live Manage Applications](https://manage.dev.live.com/AddApplication.aspx) site.
+
+After entering the name of your application, you will get a confirmation screen like the following:
+
+	Application name:	Grails Inviter
+	Client ID:	0000000040063240
+	Client secret:	DribhiR753AieFnvWOfhXlFbF2NjAOtt
+	
+Enter these to config.groovy as	
+
+	grails.plugins.inviter.windowslive.key = 'your client id'
+	grails.plugins.inviter.windowslive.secret = 'your client secret'
