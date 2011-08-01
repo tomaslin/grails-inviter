@@ -27,8 +27,8 @@ log4j = {
 
 grails.plugin.inviter.facebook.key='197755966948551'
 grails.plugin.inviter.facebook.secret='5dc5ace6405e5882511e6dd177aa5f77'
-grails.plugin.inviter.yahoo.key='dj0yJmk9NEl6aU1zYnZhMHdLJmQ9WVdrOVdHRjBZVVI2Tm1zbWNHbzlNVGMzT0RBME16UTJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD05Zg--'
-grails.plugin.inviter.yahoo.secret= 'c7b26de0dd6877812056a8255fd3a31d1fe1ec66'
+grails.plugin.inviter.yahoo.key='dj0yJmk9T21LU3dnazNxUnJ2JmQ9WVdrOWRGQlBhWFZ4TlRZbWNHbzlNVEV6TkRreU5qUTJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD04Nw--'
+grails.plugin.inviter.yahoo.secret= 'a21f29aa15b65c2394a5cd18a5f266eba15fcc91'
 grails.plugin.inviter.google.key='inviter.cloudfoundry.com'
 grails.plugin.inviter.google.secret='mIE86xbAHcH5Cr2J9BYoz0k9'
 grails.plugin.inviter.linkedin.key='k25tupolcvf1'

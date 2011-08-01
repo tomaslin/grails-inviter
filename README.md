@@ -78,6 +78,24 @@ add these to config.groovy as
 Yahoo
 -----
 
+You will need to login to your Yahoo account and [add a new application](https://developer.apps.yahoo.com/dashboard/createKey.html)
+
+Select that you'll application will need extended permissions and ask to be able to read from the Contacts API.
+
+Next, you'll have to verify your domain by adding a html file to your document root. 
+
+You will get a confirmation with your key and token like this:
+
+	Consumer Key: key
+	Consumer Secret: secret
+	Application URL: myurl.example.com
+ 	App Domain: mydomain.example.com
+
+Add this to your Config.groovy as 
+
+	grails.plugin.inviter.yahoo.key = 'Your key'
+	grails.plugin.inviter.yahoo.secret = 'Your secret'
+
 Twitter
 -------
 
@@ -90,7 +108,7 @@ You will need to [add a new application](https://dev.twitter.com/apps/new) in Tw
 add these to config.groovy as
 
 	grails.plugin.inviter.twitter.key = 'Your Consumer Key'
-	grails.plugin.inviter.secret = 'Your Consumer Secret'
+	grails.plugin.inviter.twitter.secret = 'Your Consumer Secret'
 
 LinkedIn
 --------

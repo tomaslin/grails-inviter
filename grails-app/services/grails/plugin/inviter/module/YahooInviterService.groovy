@@ -8,6 +8,7 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.scribe.model.Token
 import org.scribe.builder.api.TwitterApi
 import grails.converters.deep.JSON
+import org.scribe.builder.api.YahooApi
 
 class YahooInviterService {
 
@@ -19,9 +20,9 @@ class YahooInviterService {
 		if (!authService) {
 
 			authService = new ServiceBuilder()
-							   .provider(TwitterApi.class)
-							   .apiKey( CH.config.grails.plugin.inviter.twitter.key as String )
-							   .apiSecret( CH.config.grails.plugin.inviter.twitter.secret as String )
+							   .provider(YahooApi.class)
+							   .apiKey( CH.config.grails.plugin.inviter.yahoo.key as String )
+							   .apiSecret( CH.config.grails.plugin.inviter.yahoo.secret as String )
 							   .callback( callbackUrl as String )
 							   .build();
 			}
@@ -39,23 +40,15 @@ class YahooInviterService {
 	}
 
 	def getContacts(accessToken) {
-		def currentUser = sendRequest( accessToken, Verb.GET, "http://api.twitter.com/1/account/verify_credentials.json" ).id
 
-		def friends = sendRequest( accessToken, Verb.GET, "http://api.twitter.com/1/followers/ids.json?user_id=${ currentUser }" )
+		def friends = sendRequest( accessToken, Verb.GET, "http://social.yahooapis.com/v1/user/me/contacts?format=json" ).contacts
 		def contacts = []
 
-		// get friend details. 100 at a time due to twitter api limits
-		partition( friends, 100 ).each{ friendList ->
-
-			def friendDetails = sendRequest( accessToken, Verb.GET, "http://api.twitter.com/1/users/lookup.json?user_id=${ friendList.join(',') }" )
-
-			friendDetails.each{
-				def contact = [:]
-				contact.name = "${ it.name } (@${ it.screen_name })"
-				contact.photo = it.profile_image_url
-				contact.address = it.id
-				contacts << contact
-			}
+		friends.contact.each{
+			def contact = [:]
+			contact.name = "${ it.name } (@${ it.screen_name })"
+			contact.address = it.id
+			contacts << contact
 		}
 
 		contacts.sort { it.name.toLowerCase() }
@@ -74,18 +67,5 @@ class YahooInviterService {
 		return JSON.parse( response.body )
 	}
 
-	private def partition(array, size) {
-		def partitions = []
-		int partitionCount = array.size() / size
-
-		partitionCount.times { partitionNumber ->
-			def start = partitionNumber * size
-			def end = start + size - 1
-			partitions << array[start..end]
-		}
-
-		if (array.size() % size) partitions << array[partitionCount * size..-1]
-		return partitions
-	}
 
 }
