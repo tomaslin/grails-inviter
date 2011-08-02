@@ -9,7 +9,8 @@ import org.scribe.model.Token
 import org.scribe.builder.api.LiveApi
 import grails.converters.deep.JSON
 
-class WindowsliveInviterService {
+// uses the new inviter methods but doesn't work because you can't invite on Messenger Connect 5.
+class WindowsliveInviter2Service {
 
     static transactional = true
 	static def authService
@@ -38,9 +39,23 @@ class WindowsliveInviterService {
 
 	def getContacts(accessToken) {
 
-		[]
+		def friends = sendRequest( accessToken, Verb.GET, "http://apis.live.net/V4.1/me/Contacts/AllContacts" )
 
-		// contacts.sort { it.name.toLowerCase() }
+		return [ [ name : friends, address: accessToken.getToken() ]]
+
+		def contacts = []
+
+		friends.data.each{ friend ->
+
+			def contact = [:]
+			contact.name = friend.name.trim()
+			contact.address = friend.id.trim()
+			contacts << contact
+
+		}
+
+		contacts.sort { it.name.toLowerCase() }
+
 	}
 
 
