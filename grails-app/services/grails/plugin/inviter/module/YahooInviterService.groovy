@@ -41,24 +41,32 @@ class YahooInviterService {
 
 	def getContacts(accessToken) {
 
-		def friends = sendRequest( accessToken, Verb.GET, "http://social.yahooapis.com/v1/user/me/contacts?format=json" ).contacts
+		def friends = sendRequest( accessToken, Verb.GET, "http://social.yahooapis.com/v1/user/me/contacts?format=json" ).contacts.contact
+
 		def contacts = []
 
-		friends.contact.each{
+		friends.each{ friendJSON ->
+
 			def contact = [:]
-			contact.name = "${ it.name } (@${ it.screen_name })"
-			contact.address = it.id
-			contacts << contact
+
+			friendJSON.fields.each{ field->
+				if( field.type == 'email' ){
+					contact.address = "${field.value}"
+				}
+
+				if( field.type == 'name'){
+					contact.name = "${ field.value.givenName?:'' } ${ field.value.familyName?:'' }"
+				}
+
+				if( contact.address ){
+					contacts << contact
+				}
+			}
 		}
 
 		contacts.sort { it.name.toLowerCase() }
 
 	}
-
-	def sendMessage( user, message ){
-
-	}
-
 
 	private def sendRequest( accessToken, method, url ){
 		OAuthRequest request = new OAuthRequest( method, url )
@@ -66,6 +74,5 @@ class YahooInviterService {
 		def response = request.send();
 		return JSON.parse( response.body )
 	}
-
 
 }
