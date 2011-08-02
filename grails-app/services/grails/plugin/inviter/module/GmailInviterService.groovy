@@ -67,6 +67,7 @@ class GmailInviterService {
 						contact.photo = photoLink.@href
 						contact.signPhoto = true
 					}
+
 					*/
 
 					if (contact.name) {

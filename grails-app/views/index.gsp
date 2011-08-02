@@ -39,6 +39,13 @@
 			</g:link>
 		</li>
 
+		<li>
+			<g:link controller="inviter" action="invite" params="${[provider:'windowslive']}">
+				<img src="${resource( dir:'images', file:'msn.png' )}"/> Windows Live
+			</g:link>
+		</li>
+
+
 			</ul>
 		</p>
 

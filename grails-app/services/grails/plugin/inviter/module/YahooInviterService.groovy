@@ -6,7 +6,6 @@ import org.scribe.model.OAuthRequest
 import org.scribe.model.Verb
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
 import org.scribe.model.Token
-import org.scribe.builder.api.TwitterApi
 import grails.converters.deep.JSON
 import org.scribe.builder.api.YahooApi
 
