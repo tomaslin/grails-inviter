@@ -210,14 +210,16 @@ textarea {
 		</g:each>
 	</div>
 
+	<div id="success"></div>
+
 	<h2>Add A Personal Message</h2>
 
-	<g:form action="sendInvite">
+	<g:formRemote name="sendInvite" url="${ [ controller:'inviter', action: 'sendInvites' ] }"  onSuccess="success">
 		<g:hiddenField name="provider" value="${provider}"/>
 		<g:hiddenField name="addresses" value=""/>
 		<g:textArea name="message"/><br/>
 		<g:actionSubmit value="Invite Friends"></g:actionSubmit>
-	</g:form>
+	</g:formRemote>
 
 </body>
 </html>
