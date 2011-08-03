@@ -33,13 +33,9 @@ class InviterController {
 
 		def service = resolveService( params.provider )
 		def authToken = service.getAccessToken( params, session[ "${params.provider}_requestToken" ] )
-
-		render authToken
-		return;
-
 		session[ "${params.provider}_authToken" ] = authToken
-
 		def contacts = service.getContacts( authToken )
+
 		render( view: '/inviter/contacts', model: [contacts:contacts, provider: params.provider], plugin:'inviter' )
 
 	}
