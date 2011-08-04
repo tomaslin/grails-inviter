@@ -14,7 +14,7 @@ class YahooInviterService {
 
     static transactional = true
 	static def authService
-	static usesOAuth = true
+	static useEmail = true
 
 	def getAuthDetails(callbackUrl) {
 		if (!authService) {

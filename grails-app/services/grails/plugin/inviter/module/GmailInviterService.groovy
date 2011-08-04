@@ -14,7 +14,9 @@ class GmailInviterService {
 
 	static transactional = true
 	static def authService
-	static usesOAuth = true
+
+	static useEmail = true
+
  	private static final String AUTHORIZE_URL = "https://www.google.com/accounts/OAuthAuthorizeToken?oauth_token=";
 
 	def getAuthDetails(callbackUrl) {

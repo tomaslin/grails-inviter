@@ -14,7 +14,6 @@ class WindowsliveInviter2Service {
 
     static transactional = true
 	static def authService
-	static usesOAuth = true
 
 	def getAuthDetails(callbackUrl) {
 		if (!authService) {

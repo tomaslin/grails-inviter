@@ -13,8 +13,6 @@ class FacebookInviterService{
 
 	static transactional = true
 	static def authService
-	static usesOAuth = true
-	static clientSideSend = true
 
 	def getAuthDetails( callbackUrl ){
 		if(!authService){
@@ -50,6 +48,10 @@ class FacebookInviterService{
 		}
 
 		contacts.sort { it.name.toLowerCase() }
+
+	}
+
+	def sendMessage( contact ){
 
 	}
 

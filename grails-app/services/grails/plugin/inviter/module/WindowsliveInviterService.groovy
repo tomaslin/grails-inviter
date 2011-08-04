@@ -10,8 +10,6 @@ class WindowsliveInviterService {
 
 	static transactional = true
 
-	static usesOAuth = true
-
 	static def authService
 
 	static def tokenStore = [:]
