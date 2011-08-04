@@ -29,13 +29,18 @@ class InviterController {
 
 		def message = params.message + ' ' + ( grailsApplication.config.grails.plugin.inviter.defaultMessage as String )
 
-		if( grails.plugin.inviter.debug ){
+		if( grailsApplication.config.grails.plugin.inviter.debug ){
 			render '''
+
 				<html>
 				<body>
 				This is a debug screen.<br/>
 				In a real live situation, I would have sent ${ message } to ${ params.addresses } on ${ params.provider }
+				</body>
+				</html>
+
 			'''
+			return
 		} else {
 
 			if (service.useEmail)
@@ -50,10 +55,10 @@ class InviterController {
 			{
 				service.sendInvites(authToken, params.addresses, params.message, grailsApplication.config.grails.plugin.inviter.defaultMessage as String)
 			}
+
 		}
 
 		render 'Your messages have been sent'
-
 
 	}
 

@@ -4,7 +4,6 @@
 <g:javascript library="jquery" plugin="jquery"/>
 <g:javascript library="inviter"/>
 <link rel='stylesheet' type='text/css' href="${ resource( dir:'css', file:'inviter.css') }" />
-<script src="http://connect.facebook.net/en_US/all.js"></script>
 
 <body>
 
