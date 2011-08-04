@@ -18,12 +18,7 @@
 
 	<h2>Add A Personal Message</h2>
 
-	<g:form name="sendInvite" action="sendInvites">
-		<g:hiddenField name="provider" value="${provider}"/>
-		<g:hiddenField name="addresses" value=""/>
-		<g:textArea name="message"/><br/>
-		<g:actionSubmit value="Invite Friends"></g:actionSubmit>
-	</g:form>
+	<tmpl:/inviter/invitationForm provider="${ provider }" />
 
 </body>
 </html>
