@@ -30,7 +30,7 @@ class InviterController {
 		def message = params.message + ' ' + ( grailsApplication.config.grails.plugin.inviter.defaultMessage as String )
 
 		if( grailsApplication.config.grails.plugin.inviter.debug ){
-			render '''
+			render """"
 
 				<html>
 				<body>
@@ -39,7 +39,7 @@ class InviterController {
 				</body>
 				</html>
 
-			'''
+			"""
 			return
 		} else {
 
