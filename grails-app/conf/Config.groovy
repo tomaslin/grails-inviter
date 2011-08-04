@@ -39,4 +39,6 @@ grails.plugin.inviter.windowslive.key='0000000040062703'
 grails.plugin.inviter.windowslive.secret='uuQUGpig3kbv14SdlGwPdHYS86eVWlRc'
 
 grails.serverURL = 'http://inviter.cloudfoundry.com'
+grails.views.javascript.library = "jquery"
+
 

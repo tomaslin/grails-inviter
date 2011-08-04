@@ -1,0 +1,66 @@
+body {
+	font: 13px arial, sans-serif;
+}
+
+#filter {
+	border: 1px solid #CCCCCC;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	height: 32px;
+	margin: 0;
+	padding: 6px 2px;
+	width: 821px;
+}
+
+.friends {
+	border: 1px solid #CCCCCC;
+	border-top: 0px;
+	height: 315px;
+	margin-right: 5px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding: 2px;
+	width: 821px;
+}
+
+.friend {
+	background: -moz-linear-gradient(center top, #FFFFFF, #F4F4F4) repeat scroll 0 0 transparent;
+	background-color: #F4F4F4;
+	border: 1px solid #DDDDDD;
+	border-radius: 2px 2px 2px 2px;
+	box-shadow: 0 1px 0 #AAAAAA;
+	margin: 9px;
+	padding: 4px;
+	position: relative;
+	vertical-align: top;
+	display: inline-block;
+	height: 48px;
+	margin-right: 11px;
+	width: 164px;
+	font-size: 12px;
+	word-wrap: break-word;
+	overflow: hidden;
+	cursor: pointer
+}
+
+.friend img{
+	float:left;
+	padding-right:4px;
+	height:50px;
+	width:50px;
+}
+
+.friend.selected {
+	background: -moz-linear-gradient(center top, #63ABF7, #5E99CD) repeat scroll 0 0 transparent;
+	background-color: #63ABF7;
+	border: 1px solid #777799;
+	box-shadow: 0 0 3px #497FB8;
+	color: #FFFFFF;
+	-moz-transition: opacity 0.5s ease 0s;
+}
+
+textarea {
+	height: 80px;
+	width: 821px;
+	padding: 6px;
+}

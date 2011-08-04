@@ -30,14 +30,7 @@ class InviterController {
 		def service = resolveService( params.provider )
 		def authToken = session[ "${params.provider}_authToken" ]
 
-		if( service.clientSideSend ){
-
-			render( template: 'module/facebook', model:[ addresses : params.addresses  ]  )
-
-		} else {
-
-		}
-
+		render( template: '/module/facebook', model:[ addresses : params.addresses  ]  )
 
 	}
 
