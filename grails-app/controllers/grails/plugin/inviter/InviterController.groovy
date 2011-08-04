@@ -27,19 +27,29 @@ class InviterController {
 		def service = resolveService(params.provider)
 		def authToken = session["${params.provider}_authToken"]
 
-		if (service.useEmail)
-		{
+		def message = params.message + ' ' + ( grailsApplication.config.grails.plugin.inviter.defaultMessage as String )
 
-			params.addresses.split(',').each {
-				sendMail {
-					to: address
-					message: params.message + ' ' + ( grailsApplication.config.grails.plugin.inviter.defaultMessage as String )
+		if( grails.plugin.inviter.debug ){
+			render '''
+				<html>
+				<body>
+				This is a debug screen.<br/>
+				In a real live situation, I would have sent ${ message } to ${ params.addresses } on ${ params.provider }
+			'''
+		} else {
+
+			if (service.useEmail)
+			{
+				params.addresses.split(',').each {
+					sendMail {
+						to: address
+						message: message
+					}
 				}
+			} else
+			{
+				service.sendInvites(authToken, params.addresses, params.message, grailsApplication.config.grails.plugin.inviter.defaultMessage as String)
 			}
-
-		} else
-		{
-			service.sendInvites(authToken, params.addresses, params.message, grailsApplication.config.grails.plugin.inviter.defaultMessage as String)
 		}
 
 		render 'Your messages have been sent'
