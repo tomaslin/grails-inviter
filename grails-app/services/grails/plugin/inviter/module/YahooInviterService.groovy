@@ -44,10 +44,12 @@ class YahooInviterService {
 		def friends = sendRequest( accessToken, Verb.GET, "http://social.yahooapis.com/v1/user/me/contacts?format=json" ).contacts.contact
 
 		def contacts = []
+		def addedContact = []
 
 		friends.each{ friendJSON ->
 
 			def contact = [:]
+
 
 			friendJSON.fields.each{ field->
 				if( field.type == 'email' ){
@@ -58,8 +60,9 @@ class YahooInviterService {
 					contact.name = "${ field.value.givenName?:'' } ${ field.value.familyName?:'' }"
 				}
 
-				if( contact.address ){
+				if( contact.address && !addedContact.contains( contact.address )){
 					contacts << contact
+					addedContact << contact.address
 				}
 			}
 		}
