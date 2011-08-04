@@ -4,6 +4,7 @@
 <g:javascript library="jquery" plugin="jquery"/>
 <g:javascript library="inviter"/>
 <link rel='stylesheet' type='text/css' href="${ resource( dir:'css', file:'inviter.css') }" />
+<script src="http://connect.facebook.net/en_US/all.js"></script>
 
 <body>
 
@@ -17,12 +18,12 @@
 
 	<h2>Add A Personal Message</h2>
 
-	<g:formRemote name="sendInvite" url="${ [ controller:'inviter', action: 'sendInvites' ] }"  onSuccess="success">
+	<g:form name="sendInvite" action="sendInvites">
 		<g:hiddenField name="provider" value="${provider}"/>
 		<g:hiddenField name="addresses" value=""/>
 		<g:textArea name="message"/><br/>
 		<g:actionSubmit value="Invite Friends"></g:actionSubmit>
-	</g:formRemote>
+	</g:form>
 
 </body>
 </html>

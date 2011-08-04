@@ -1,12 +1,11 @@
 package org.scribe.builder.api;
 
-import org.scribe.extractors.*;
+import org.scribe.extractors.AccessTokenExtractor;
+import org.scribe.extractors.JsonTokenExtractor;
+import org.scribe.model.OAuthConfig;
+import org.scribe.utils.Preconditions;
 
-import org.scribe.model.*;
-
-import org.scribe.utils.*;
-
-import static org.scribe.utils.URLUtils.*;
+import static org.scribe.utils.URLUtils.formURLEncode;
 
 public class LiveApi extends DefaultApi20 {
 

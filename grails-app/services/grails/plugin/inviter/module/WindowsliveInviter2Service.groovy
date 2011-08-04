@@ -1,13 +1,13 @@
 package grails.plugin.inviter.module
 
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+
+import grails.converters.deep.JSON
 import org.scribe.builder.ServiceBuilder
-import org.scribe.model.Verifier
+import org.scribe.builder.api.LiveApi
 import org.scribe.model.OAuthRequest
 import org.scribe.model.Verb
-import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
-import org.scribe.model.Token
-import org.scribe.builder.api.LiveApi
-import grails.converters.deep.JSON
+import org.scribe.model.Verifier
 
 // uses the new inviter methods but doesn't work because you can't invite on Messenger Connect 5.
 class WindowsliveInviter2Service {

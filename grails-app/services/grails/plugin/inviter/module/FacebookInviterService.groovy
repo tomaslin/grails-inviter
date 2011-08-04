@@ -1,12 +1,13 @@
 package grails.plugin.inviter.module
 
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
-import org.scribe.builder.api.FacebookApi
+
 import grails.converters.deep.JSON
-import org.scribe.model.Verifier
 import org.scribe.builder.ServiceBuilder
+import org.scribe.builder.api.FacebookApi
 import org.scribe.model.OAuthRequest
 import org.scribe.model.Verb
+import org.scribe.model.Verifier
 
 class FacebookInviterService{
 

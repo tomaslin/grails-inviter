@@ -1,13 +1,14 @@
 package grails.plugin.inviter.module
 
-import org.scribe.builder.ServiceBuilder
-import org.scribe.model.Verifier
-import org.scribe.model.OAuthRequest
-import org.scribe.model.Verb
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
-import org.scribe.model.Token
-import org.scribe.builder.api.LinkedInApi
+
 import grails.converters.deep.XML
+import org.scribe.builder.ServiceBuilder
+import org.scribe.builder.api.LinkedInApi
+import org.scribe.model.OAuthRequest
+import org.scribe.model.Token
+import org.scribe.model.Verb
+import org.scribe.model.Verifier
 
 class LinkedinInviterService {
 

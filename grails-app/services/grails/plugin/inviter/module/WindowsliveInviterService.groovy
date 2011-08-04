@@ -1,10 +1,10 @@
 package grails.plugin.inviter.module
 
 import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
-import static groovyx.net.http.ContentType.URLENC
-import org.apache.commons.io.IOUtils
-import grails.converters.deep.JSON
+
 import grails.converters.deep.XML
+import org.apache.commons.io.IOUtils
+import static groovyx.net.http.ContentType.URLENC
 
 class WindowsliveInviterService {
 
