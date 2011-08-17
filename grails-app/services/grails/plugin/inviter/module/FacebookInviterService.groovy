@@ -51,8 +51,6 @@ class FacebookInviterService{
 
 	}
 
-	def sendMessage( contact ){
 
-	}
 
 }

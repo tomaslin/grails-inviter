@@ -15,6 +15,9 @@ The main difference of this plugin is that it uses Groovy / Grails and can be de
 
 Under the hood, the plugin uses the excellent [Scribe oAuth library](https://github.com/fernandezpablo85/scribe-java) by Pablo Fernandez.
 
+Supported Networks
+==================
+
 The plugin currently supports the following networks
 
 * Facebook
@@ -24,10 +27,28 @@ The plugin currently supports the following networks
 * LinkedIn
 * Windows Live
 
+Warning - read me first
+=======================
+
+This plugin is considered early alpha and should not be used in production. 
+
+Facebook
+--------
+
+Currently, Facebook APIs do not provide a mechanism for directly messaging users. As a result, this plugin implements an invitation by writing on a friend's wall ( similar to the AirBnB invite friends invitation ). The drawback of this approach is that if friends mark your post as Spam or hide it, your application might be flagged as spam. 
+
+A better alternative is to use the send dialogs provided by facebook instead of this plugin. https://developers.facebook.com/docs/reference/dialogs/send/
+
+Windows Live
+------------
+
+This plugin uses the 4.1 version of the windows live connector as the 5.0 version does not provide a way to access emails or send invitations ( http://social.msdn.microsoft.com/Forums/en-US/messengerconnect/thread/1b325483-30f8-4390-bf76-913378fd65d7 ). 
+
+
 Configuration
 =============
 
-The plugin requires credentials to be added to each provider used by your application. 
+The plugin requires credentials to be added to each provider used by your application. Please read the Authentication Credentials section on how to configure each social network.
 
 Authentication Credentials
 ==========================
