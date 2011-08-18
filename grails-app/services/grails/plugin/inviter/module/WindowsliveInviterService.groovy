@@ -100,9 +100,31 @@ class WindowsliveInviterService {
 
 	}
 
+	// http://msdn.microsoft.com/en-us/library/gg430655.aspx
 	def sendMessage = { attrs ->
 
+		def uid = tokenStore[attrs.accessToken]
 
+		withHttp(uri: 'https://apis.live.net/V4.1/') {
+
+			post(path: "cid-${uid}/Contacts/Invitations",
+				headers: [Authorization: "WRAP access_token=${ accessToken }",
+				body: 	"""{
+							"Invitations": [
+								{
+									"To": ["${ attrs.contact }"],
+									"From": "",
+									"Subject": "${ attrs.subject }",
+									"Body": "${ attrs.message }"
+								}
+							]
+						}"""
+				]
+			) { resp, reader ->
+
+			}
+
+		}
 
 	}
 
