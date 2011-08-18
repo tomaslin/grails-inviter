@@ -14,6 +14,7 @@ class LinkedinInviterService {
 
     static transactional = true
 	static def authService
+	static def messageAttrs = [ 'accessToken', 'contact', 'subject', 'message' ]
 
 	def getAuthDetails(callbackUrl) {
 		if (!authService) {
@@ -54,12 +55,29 @@ class LinkedinInviterService {
 
 		}
 
-
 		contacts.sort { it.name.toLowerCase() }
 
 	}
 
-	def sendMessage( user, message ){
+	def sendMessage = { attrs->
+
+		OAuthRequest request = new OAuthRequest( Verb.POST, 'http://api.linkedin.com/v1/people/~/mailbox' )
+		authService.signRequest( attrs.accessToken, request )
+		request.bodyContents = """{
+		  "recipients": {
+			"values": [
+			{
+			  "person": {
+				"_path": "/people/${attrs.contact}",
+			   }
+			}]
+		  },
+		  "subject": "${ attrs.subject }",
+		  "body": "${ attrs.message }"
+		}"""
+
+		def response = request.send()
+		return response.code
 
 	}
 

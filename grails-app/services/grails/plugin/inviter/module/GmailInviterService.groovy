@@ -89,16 +89,11 @@ class GmailInviterService {
 	}
 
 	def getPhoto( accessToken, photoUrl ){
-
 		def photo
-
 		OAuthRequest request = new OAuthRequest(Verb.GET, photoUrl);
 		authService.signRequest(accessToken, request)
 		def response = request.send();
-
 		return response
-
-
 	}
 
 }

@@ -100,4 +100,10 @@ class WindowsliveInviterService {
 
 	}
 
+	def sendMessage = { attrs ->
+
+
+
+	}
+
 }

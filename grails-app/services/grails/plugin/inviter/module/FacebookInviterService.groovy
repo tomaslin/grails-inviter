@@ -13,6 +13,7 @@ class FacebookInviterService{
 
 	static transactional = true
 	static def authService
+	static def messageAttrs = [ 'message', 'picture', 'link', 'name', 'caption', 'description', 'source' ]
 
 	def getAuthDetails( callbackUrl ){
 		if(!authService){
@@ -51,6 +52,32 @@ class FacebookInviterService{
 
 	}
 
+	def sendMessage = { attrs ->
 
+		OAuthRequest request = new OAuthRequest( Verb.POST, "https://graph.facebook.com/${ attrs.contact }/feed" )
+
+		request.addBodyParameter( 'message', attrs.message )
+		request.addBodyParameter( 'link', attrs.link )
+
+		if( attrs.picture )
+			request.addBodyParameter( 'picture', attrs.picture )
+
+		if( attrs.name )
+			request.addBodyParameter( 'name', attrs.name )
+
+		if( attrs.caption )
+			request.addBodyParameter( 'caption', attrs.caption )
+
+		if( attrs.description )
+			request.addBodyParameter( 'description', attrs.description )
+
+		if( attrs.source )
+			request.addBodyParameter( 'source', attrs.source )
+
+		authService.signRequest( attrs.accessToken, request )
+
+	    return request.send()
+
+	}
 
 }

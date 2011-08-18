@@ -15,6 +15,8 @@ class TwitterInviterService {
     static transactional = true
 	static def authService
 
+	static def messageAttrs = [ 'message', 'contact', 'accessToken' ]
+
 	def getAuthDetails(callbackUrl) {
 		if (!authService) {
 
@@ -62,10 +64,12 @@ class TwitterInviterService {
 
 	}
 
-	def sendMessage( user, message ){
-
+	def sendMessage = { attrs ->
+		OAuthRequest request = new OAuthRequest( Verb.POST, 'http://api.twitter.com/1/direct_messages/new.format' )
+		request.addBodyParameter( 'user_id', attrs.contact )
+		request.addBodyParameter( 'text', attrs.message )
+		authService.signRequest( attrs.accessToken, request )
 	}
-
 
 	private def sendRequest( accessToken, method, url ){
 		OAuthRequest request = new OAuthRequest( method, url )
