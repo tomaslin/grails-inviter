@@ -13,14 +13,10 @@
 		<p>
 			<ul>
 		<li>
-			<g:link controller="inviter" action="invite" params="${[provider:'Facebook']}">
-				<img src="${resource( dir:'images', file:'facebook.png' )}"/> Facebook
-			</g:link>
+			<iv:invitationLink provider="facebook"><img src="${resource( dir:'images', file:'facebook.png' )}"/> Facebook</iv:invitationLink>
 		</li>
 		<li>
-			<g:link controller="inviter" action="invite" params="${[provider:'Gmail']}">
-				<img src="${resource( dir:'images', file:'google.png' )}"/> Gmail
-			</g:link>
+			<iv:invitationLink provider="google"><img src="${resource( dir:'images', file:'google.png' )}"/> Google </iv:invitationLink>
 		</li>
 		<li>
 			<g:link controller="inviter" action="invite" params="${[provider:'Yahoo']}">

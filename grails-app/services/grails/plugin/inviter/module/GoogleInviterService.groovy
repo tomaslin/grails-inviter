@@ -10,7 +10,7 @@ import org.scribe.model.Token
 import org.scribe.model.Verb
 import org.scribe.model.Verifier
 
-class GmailInviterService {
+class GoogleInviterService {
 
 	static transactional = true
 	static def authService

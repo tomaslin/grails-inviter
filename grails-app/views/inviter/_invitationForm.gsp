@@ -9,7 +9,7 @@
 	<g:hiddenField name="picture" value="${picture}"/>
 	<g:hiddenField name="redirectUrl" value="${redirectUrl}"/>
 
-	<g:if test="">
+	<g:if test="${canEditMessage}">
 		<g:textArea name="message" value="${message}"/><br/>
 	</g:if>
 	<g:else>
