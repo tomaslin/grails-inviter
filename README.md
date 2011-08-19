@@ -20,12 +20,12 @@ Supported Networks
 
 The plugin currently supports the following networks
 
-* Facebook
-* Google
-* Yahoo
-* Twitter
-* LinkedIn
-* Windows Live
+* Facebook - writes invitation on user's wall
+* Google - retrieves email
+* Yahoo - retrieves email
+* Twitter - sends a direct message
+* LinkedIn - sends a linkedIn message
+* Windows Live - sends an Invitation
 
 Warning - read me first
 =======================
@@ -122,6 +122,7 @@ Twitter
 
 You will need to [add a new application](https://dev.twitter.com/apps/new) in Twitter
 
+IMPORTANT: Make sure you select that you want your app to have Read, Write and Direct Message permission if you want to use the send message functionality. 
 
 	Consumer key 		G8rCU7AHBsZAbeLUAPddQ
 	Consumer secret 	BKbt1ygWu0q4xsLuJ8ddfYvegojVHz2GXn1Z5leoXN8
