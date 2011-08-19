@@ -25,7 +25,6 @@ class InviterController {
 	def sendInvites = {
 		def service = resolveService(params.provider)
 		def accessToken = session["${params.provider}_accessToken"]
-
 		def message = params.message + ' ' + ( grailsApplication.config.grails.plugin.inviter.defaultMessage ?: '' ) as String
 
 		if( grailsApplication.config.grails.plugin.inviter.debug ){
@@ -46,18 +45,17 @@ class InviterController {
 
 			if (service.useEmail)
 			{
-
 				params.addresses.split(',').each { address ->
 					sendMail {
 						to: address
-						message: message
+						subject: params.subject
+						message: params.message
 					}
 				}
-
 			} else
 			{
 				params.addresses.split(',').each { address ->
-					def response = service.sendMessage( accessToken: accessToken, link: 'http://inviter.cloudfoundry.com', message: params.message, description:"grails inviter let's you invite people", contact:address, subject:'join grails inviter' )
+					def response = service.sendMessage( accessToken: accessToken, link: params.link, message: params.message, description: params.description, contact:address, subject: params.subject )
 				}
 			}
 
