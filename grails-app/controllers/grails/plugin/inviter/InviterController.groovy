@@ -57,7 +57,7 @@ class InviterController {
 			} else
 			{
 				params.addresses.split(',').each { address ->
-					def response = service.sendMessage( accessToken: accessToken, link: 'http://inviter.cloudfoundry.com', message:'join grails inviter ', description:"grails inviter let's you invite people", contact:address, subject:'join grails inviter' )
+					def response = service.sendMessage( accessToken: accessToken, link: 'http://inviter.cloudfoundry.com', message: params.message, description:"grails inviter let's you invite people", contact:address, subject:'join grails inviter' )
 				}
 			}
 
