@@ -56,6 +56,10 @@ class InviterController {
 			{
 				params.addresses.split(',').each { address ->
 					def response = service.sendMessage( accessToken: accessToken, link: params.link, message: params.message, description: params.description, contact:address, subject: params.subject )
+
+					render response
+					return
+
 				}
 			}
 

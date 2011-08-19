@@ -16,6 +16,8 @@ class LinkedinInviterService {
 	static def authService
 	static def messageAttrs = [ 'accessToken', 'contact', 'subject', 'message' ]
 
+	static def useEmail = false
+
 	def getAuthDetails(callbackUrl) {
 		if (!authService) {
 
@@ -62,8 +64,7 @@ class LinkedinInviterService {
 	def sendMessage = { attrs->
 
 		OAuthRequest request = new OAuthRequest( Verb.POST, 'http://api.linkedin.com/v1/people/~/mailbox' )
-		authService.signRequest( attrs.accessToken, request )
-		request.bodyContents = """{
+		String jsonLoad = """{
 		  "recipients": {
 			"values": [
 			{
@@ -73,8 +74,14 @@ class LinkedinInviterService {
 			}]
 		  },
 		  "subject": "${ attrs.subject }",
-		  "body": "${ attrs.message }"
+		  "body": "${ attrs.message + ' ' + attrs.link }"
 		}"""
+
+		request.addHeader("Content-Length", Integer.toString( jsonLoad.length()));
+    	request.addHeader("Content-Type", "text/json");
+    	request.addPayload(jsonLoad);
+
+		authService.signRequest( attrs.accessToken, request )
 
 		def response = request.send()
 		return response.code
