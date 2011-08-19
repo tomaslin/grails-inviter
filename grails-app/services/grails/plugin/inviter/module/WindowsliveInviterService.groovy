@@ -121,7 +121,7 @@ class WindowsliveInviterService {
 						}"""
 				]
 			) { resp, reader ->
-
+				return resp
 			}
 
 		}

@@ -40,8 +40,4 @@ grails.plugin.inviter.windowslive.secret='uuQUGpig3kbv14SdlGwPdHYS86eVWlRc'
 
 grails.serverURL = 'http://inviter.cloudfoundry.com'
 grails.views.javascript.library = "jquery"
-grails.plugin.inviter.debug = true
-grails.plugin.inviter.defaultMessage = "JOIN GRAILS INVITER AT http://inviter.cloudfoundry.com"
-grails.plugin.inviter.defaultSubject = "JOIN GRAILS INVITER"
-
-
+grails.plugin.inviter.debug = false

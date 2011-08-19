@@ -23,13 +23,13 @@ class InviterController {
 	}
 
 	def sendInvites = {
-
 		def service = resolveService(params.provider)
-		def authToken = session["${params.provider}_authToken"]
+		def accessToken = session["${params.provider}_accessToken"]
 
 		def message = params.message + ' ' + ( grailsApplication.config.grails.plugin.inviter.defaultMessage ?: '' ) as String
 
 		if( grailsApplication.config.grails.plugin.inviter.debug ){
+
 			render """
 
 				<html>
@@ -41,6 +41,7 @@ class InviterController {
 
 			"""
 			return
+
 		} else {
 
 			if (service.useEmail)
@@ -55,7 +56,9 @@ class InviterController {
 
 			} else
 			{
-				service.sendInvites(authToken, params.addresses, params.message, grailsApplication.config.grails.plugin.inviter.defaultMessage as String)
+				params.addresses.split(',').each { address ->
+					def response = service.sendMessage( accessToken: accessToken, link: 'http://inviter.cloudfoundry.com', message:'join grails inviter ', description:"grails inviter let's you invite people", contact:address, subject:'join grails inviter' )
+				}
 			}
 
 		}
@@ -67,17 +70,16 @@ class InviterController {
 	def contacts = {
 
 		def service = resolveService(params.provider)
-		def authToken = service.getAccessToken(params, session["${params.provider}_requestToken"])
-		session["${params.provider}_authToken"] = authToken
-		def contacts = service.getContacts(authToken)
-
+		def accessToken = service.getAccessToken(params, session["${params.provider}_requestToken"])
+		session["${params.provider}_accessToken"] = accessToken
+		def contacts = service.getContacts(accessToken)
 		render(view: '/inviter/contacts', model: [contacts: contacts, provider: params.provider], plugin: 'inviter')
 
 	}
 
 	def photo = {
 		def service = resolveService(params.provider)
-		def photo = service.getPhoto(session["${params.provider}_authToken"] as Token, params.photo)
+		def photo = service.getPhoto(session["${params.provider}_accessToken"] as Token, params.photo)
 
 		response.contentType = photo.getHeader('Content-Type')
 
