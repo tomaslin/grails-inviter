@@ -45,6 +45,69 @@ Windows Live
 This plugin uses the 4.1 version of the windows live connector as the 5.0 version does not provide a way to access emails or send invitations ( http://social.msdn.microsoft.com/Forums/en-US/messengerconnect/thread/1b325483-30f8-4390-bf76-913378fd65d7 ). 
 
 
+The authentication workflow
+
+Provided Tags
+=============
+
+The plugin includes three tags to make the process of inviting friends easy.
+
+iv:invitationLink
+-----------------
+
+This tag creates a link that will point to the desired social network or email provider to initiate the invitation process.
+
+params: provider - name of the provider
+usage:
+		<iv:invitationLink provider="facebook"> This is a link to facebook </iv:invitationLink>
+
+
+iv:contacts
+-----------
+
+This tag embeds a friend selector from the list of contacts retrieved from the social network. Selected friends are stored in a javascript array called addresses and, if specified, in a hidden field on the same page called addresses.
+
+params: contacts - list of contacts
+usage:
+		<iv:contacts contacts="${ contacts }"/>
+
+The contacts tag. You must also include the inviter css, js and jquery files for this tag to work properly.
+
+		<g:javascript library="inviter"/>
+		<link rel='stylesheet' type='text/css' href="${ resource( dir:'css', file:'inviter.css') }" />
+
+iv:messageForm
+--------------
+
+This tag creates a submit form to interact with the contact selector and sends a message to the invited person.
+
+params:
+		provider - name of the provider, e.g. facebook
+		link - the link to embed to the invitation message
+		subject - in emails, the subject of the invitation message
+		message - the message to embed
+		canEditMessages - if enabled, this allows the message to be sent to be customized
+		redirectUrl - the Url to return the user to after invitations have been sent
+
+        For facebook:
+
+		description - the description of the link to be sent
+		caption - the photo caption
+		picture - the image to attach
+
+usage:
+		<iv:messageForm provider="${ provider }"
+				link="http://inviter.cloudfoundry.com"
+				subject="join grails inviter"
+				description="grails inviter"
+				caption="picture caption"
+				picture="http://www.grails.org/static/cXmUZIAv28XIiNgkRiz4RRl21TsGZ5HoGpZw1UITNyV.png"
+				redirectUrl="http://inviter.cloudfoundry.com/success"
+				message="join grails inviter"
+				canEditMessage="true"
+		/>
+
+
 Configuration
 =============
 
