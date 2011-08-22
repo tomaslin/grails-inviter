@@ -57,8 +57,12 @@ iv:invitationLink
 
 This tag creates a link that will point to the desired social network or email provider to initiate the invitation process.
 
-params: provider - name of the provider
+params:
+
+		provider - name of the provider
+
 usage:
+
 		<iv:invitationLink provider="facebook"> This is a link to facebook </iv:invitationLink>
 
 
@@ -67,8 +71,12 @@ iv:contacts
 
 This tag embeds a friend selector from the list of contacts retrieved from the social network. Selected friends are stored in a javascript array called addresses and, if specified, in a hidden field on the same page called addresses.
 
-params: contacts - list of contacts
+params:
+
+		contacts - list of contacts
+
 usage:
+
 		<iv:contacts contacts="${ contacts }"/>
 
 The contacts tag. You must also include the inviter css, js and jquery files for this tag to work properly.
@@ -82,20 +90,32 @@ iv:messageForm
 This tag creates a submit form to interact with the contact selector and sends a message to the invited person.
 
 params:
+
 		provider - name of the provider, e.g. facebook
+
 		link - the link to embed to the invitation message
+
 		subject - in emails, the subject of the invitation message
+
 		message - the message to embed
+
 		canEditMessages - if enabled, this allows the message to be sent to be customized
+
 		redirectUrl - the Url to return the user to after invitations have been sent
+
 
         For facebook:
 
 		description - the description of the link to be sent
+
 		caption - the photo caption
+
 		picture - the image to attach
 
+
+
 usage:
+
 		<iv:messageForm provider="${ provider }"
 				link="http://inviter.cloudfoundry.com"
 				subject="join grails inviter"
