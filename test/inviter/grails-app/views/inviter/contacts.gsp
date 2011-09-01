@@ -2,8 +2,8 @@
 <head><title>Invite Friends</title></head>
 
 <g:javascript library="jquery" plugin="jquery"/>
-<g:javascript library="inviter"/>
-<link rel='stylesheet' type='text/css' href="${ resource( dir:'css', file:'inviter.css') }" />
+<g:javascript library="inviter" plugin="inviter"/>
+<link rel='stylesheet' type='text/css' href="${ resource( dir:'css', file:'inviter.css', plugin:'inviter') }" />
 
 <body>
 

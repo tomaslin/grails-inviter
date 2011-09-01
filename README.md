@@ -81,8 +81,8 @@ usage:
 
 The contacts tag. You must also include the inviter css, js and jquery files for this tag to work properly.
 
-		<g:javascript library="inviter"/>
-		<link rel='stylesheet' type='text/css' href="${ resource( dir:'css', file:'inviter.css') }" />
+		<g:javascript library="inviter" plugin='inviter'/>
+		<link rel='stylesheet' type='text/css' href="${ resource( dir:'css', file:'inviter.css', plugin:'inviter') }" />
 
 iv:messageForm
 --------------
@@ -126,6 +126,20 @@ usage:
 				message="join grails inviter"
 				canEditMessage="true"
 		/>
+
+Testing
+-------
+
+The plugin includes a service called TestInviterService. Use:
+
+ 	<iv:invitationLink provider="test"> This is a link to test contacts </iv:invitationLink>
+
+The test service returns a list of 20 contacts with emails.
+
+Modifying your contacts page
+----------------------------
+
+For most cases, you want to create your own view called inviter/contacts.gsp to include your application settings. Use the example within the plugin to guide you.
 
 
 Configuration

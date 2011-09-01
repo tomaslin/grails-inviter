@@ -24,7 +24,7 @@ class InviterTagLib {
 
 	def contacts = { attrs ->
 
-		out << render( template: '/inviter/contacts', model: [contacts: attrs.contacts ])
+		out << render( template: '/inviter/contacts', model: [contacts: attrs.contacts ] )
 
 	}
 

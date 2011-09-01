@@ -12,7 +12,7 @@
 
 <p>
 <ul>
-	<g:each in="${['facebook', 'google', 'yahoo', 'twitter', 'linkedin', 'windowslive' ]}" var="provider">
+	<g:each in="${['test', 'facebook', 'google', 'yahoo', 'twitter', 'linkedin', 'windowslive' ]}" var="provider">
 		<li>
 			<iv:invitationLink provider="${provider}"><img
 					src="${resource(dir: 'images', file: provider + '.png')}"/> ${provider}</iv:invitationLink>
