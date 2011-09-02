@@ -38,6 +38,14 @@ grails.plugin.inviter.twitter.secret='BKbt1ygWu0q4xsLuJ8bhjYvegojVHz2GXn1Z5leoXN
 grails.plugin.inviter.windowslive.key='0000000040062703'
 grails.plugin.inviter.windowslive.secret='uuQUGpig3kbv14SdlGwPdHYS86eVWlRc'
 
-grails.serverURL = 'http://inviter.cloudfoundry.com'
+environments{
+	production{
+		grails.serverURL = 'http://inviter.cloudfoundry.com'
+	}
+	development{
+		grails.serverURL = 'httpe://localhost:8080/inviterTest'
+	}
+}
+
 grails.views.javascript.library = "jquery"
 grails.plugin.inviter.debug = false

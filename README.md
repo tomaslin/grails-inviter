@@ -261,3 +261,14 @@ Enter these to config.groovy as
 
 	grails.plugins.inviter.windowslive.key = 'your client id'
 	grails.plugins.inviter.windowslive.secret = 'your client secret'
+
+
+Revision History
+================
+
+0.2.1 - Select All and Deselect All.
+
+0.2 - Added a test service for local testing
+      Moved test project into a test directory
+
+0.1 - Initial Release

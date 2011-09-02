@@ -68,6 +68,9 @@ $(document).ready(function() {
 
 	$('#filterField').val(FILTER_BLANK)
 
+	$('#clearSelection').click(clearSelection);
+	$('#selectAll').click(selectAll);
+
 });
 
 /*
@@ -104,3 +107,21 @@ $.fn.bindWithDelay = function( type, data, fn, timeout, throttle ) {
 	return this.bind(type, data, cb);
 }
 })(jQuery);
+
+
+function clearSelection() {
+        addresses = [];
+
+        $('.friends div').each(function() {
+                $(this).removeClass('selected');
+        });
+}
+
+function selectAll() {
+        addresses = [];
+
+        $('.friends div').each(function() {
+                addresses.push($(this).attr('data-email'));
+                $(this).addClass('selected');
+        });
+}
