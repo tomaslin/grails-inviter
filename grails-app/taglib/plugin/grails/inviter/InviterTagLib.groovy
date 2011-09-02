@@ -1,5 +1,7 @@
 package plugin.grails.inviter
 
+import groovy.text.Template
+
 class InviterTagLib {
 
 	static namespace="iv"
@@ -18,14 +20,13 @@ class InviterTagLib {
 
 	def messageForm = { attrs ->
 
-		out << render( template: '/inviter/invitationForm', model: attrs )
+		out << render( template: '/inviter/invitationForm', model: attrs, plugin:'inviter' )
 
 	}
 
 	def contacts = { attrs ->
 
-		out << render( template: '/inviter/contacts', model: [contacts: attrs.contacts ] )
+		out << render( template: '/inviter/contacts', model: [contacts: attrs.contacts ], plugin:'inviter' )
 
 	}
-
 }
