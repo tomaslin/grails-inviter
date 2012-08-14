@@ -1,23 +1,31 @@
+grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
+grails.project.target.level = 1.6
+grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
+
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
-        // uncomment to disable ehcache
+        // specify dependency exclusions here; for example, uncomment this to disable ehcache:
         // excludes 'ehcache'
     }
-    log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    checksums true // Whether to verify checksums on resolve
+
     repositories {
-        //grailsPlugins()
-        //grailsHome()
+        inherits true // Whether to inherit repository definitions from plugins
+
+        grailsPlugins()
+        grailsHome()
         grailsCentral()
 
-        // uncomment the below to enable remote dependency resolution
-        // from public Maven repositories
         mavenLocal()
         mavenCentral()
+
+        // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -26,35 +34,22 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
 
-		build "org.scribe:scribe:1.2.1"
-		runtime "org.scribe:scribe:1.2.1"
-
-
-
-        // runtime 'mysql:mysql-connector-java:5.1.13'
+        // runtime 'mysql:mysql-connector-java:5.1.20'
     }
-    
+
     plugins {
-        build(":tomcat:$grailsVersion",
-              ":release:2.0.3",
-              ":rest-client-builder:1.0.2") {
-            export = false
-        }
-        
-/*
+        build ":tomcat:$grailsVersion"
 
-plugins.hibernate=1.3.7
-plugins.jquery=1.6.1.1
-plugins.mail=1.0-SNAPSHOT
-plugins.release=1.0.0.RC3
-plugins.rest=0.6.1
-plugins.tomcat=1.3.7
-*/
+        compile ":cache:1.0.0"
+		compile ":greenmail:1.3.2"
 
-        compile ":mail:1.0"
-        compile ":rest:0.6.1"
+        runtime ":database-migration:1.1"
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.6.1"
         runtime ":resources:1.1.6"
+
     }
 }
+
+grails.plugin.location.inviter = "../../../"
+

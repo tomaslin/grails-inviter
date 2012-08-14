@@ -42,14 +42,17 @@ class InviterController {
 			return
 
 		} else {
+		    params.each { k,v ->
+		        println "$k $v"
+		    }
 
 			if (service.useEmail)
 			{
 				params.addresses.split(',').each { address ->
 					sendMail {
-						to: address
-						subject: params.subject
-						message: params.message
+						to       address
+						subject  params.subject
+						text     params.message
 					}
 				}
 			} else

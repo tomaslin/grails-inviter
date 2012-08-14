@@ -1,6 +1,16 @@
 Grails Inviter Plugin
 =====================
 
+***
+
+This is not the official repo for Grails Inviter Plugin.
+
+Do NOT fork this repo.
+
+The official repo is [tomaslin / grails-inviter](https://github.com/tomaslin/grails-inviter)
+
+***
+
 The grails inviter plugin allows you to quickly import contacts from various social networks and mail providers into your application. 
 
 You can see it in action at http://inviter.cloudfoundry.com
@@ -15,6 +25,7 @@ The main difference of this plugin is that it uses Groovy / Grails and can be de
 
 Under the hood, the plugin uses the excellent [Scribe oAuth library](https://github.com/fernandezpablo85/scribe-java) by Pablo Fernandez.
 
+
 Supported Networks
 ==================
 
@@ -27,10 +38,12 @@ The plugin currently supports the following networks
 * LinkedIn - sends a linkedIn message
 * Windows Live - sends an Invitation
 
+
 Warning - read me first
 =======================
 
 This plugin is considered early alpha and should not be used in production. 
+
 
 Facebook
 --------
@@ -39,6 +52,7 @@ Currently, Facebook APIs do not provide a mechanism for directly messaging users
 
 A better alternative is to use the send dialogs provided by facebook instead of this plugin. https://developers.facebook.com/docs/reference/dialogs/send/
 
+
 Windows Live
 ------------
 
@@ -46,6 +60,7 @@ This plugin uses the 4.1 version of the windows live connector as the 5.0 versio
 
 
 The authentication workflow
+
 
 Provided Tags
 =============
@@ -83,6 +98,7 @@ The contacts tag. You must also include the inviter css, js and jquery files for
 
 		<g:javascript library="inviter" plugin='inviter'/>
 		<link rel='stylesheet' type='text/css' href="${ resource( dir:'css', file:'inviter.css', plugin:'inviter') }" />
+
 
 iv:messageForm
 --------------
@@ -127,6 +143,7 @@ usage:
 				canEditMessage="true"
 		/>
 
+
 Testing
 -------
 
@@ -135,6 +152,9 @@ The plugin includes a service called TestInviterService. Use:
  	<iv:invitationLink provider="test"> This is a link to test contacts </iv:invitationLink>
 
 The test service returns a list of 20 contacts with emails.
+
+In test/apps you can find a demo app using [Greenmail Plugin](http://grails.org/plugin/greenmail) to display mail messages not actually sent.
+
 
 Modifying your contacts page
 ----------------------------
@@ -147,10 +167,12 @@ Configuration
 
 The plugin requires credentials to be added to each provider used by your application. Please read the Authentication Credentials section on how to configure each social network.
 
+
 Authentication Credentials
 ==========================
 
 The following section describes where to get each authentication values needed for this application. You can use the config.groovy file included in this plugin as a reference. However, these authentication tokens only work with the inviter.cloudfoundry.com site. 
+
 
 Facebook
 --------
@@ -193,6 +215,7 @@ add these to config.groovy as
 	grails.plugins.inviter.google.key = 'your oAuth Consumer Key'
 	grails.plugins.inviter.google.secret = 'your oAuth Consumer Secret'
 
+
 Yahoo
 -----
 
@@ -214,6 +237,7 @@ Add this to your Config.groovy as
 	grails.plugin.inviter.yahoo.key = 'Your key'
 	grails.plugin.inviter.yahoo.secret = 'Your secret'
 
+
 Twitter
 -------
 
@@ -228,6 +252,7 @@ add these to config.groovy as
 
 	grails.plugin.inviter.twitter.key = 'Your Consumer Key'
 	grails.plugin.inviter.twitter.secret = 'Your Consumer Secret'
+
 
 LinkedIn
 --------
@@ -245,6 +270,7 @@ Enter these to config.groovy as
 	
 	grails.plugins.inviter.linkedin.key = 'your API Key'
 	grails.plugins.inviter.linkedin.secret = 'your Secret Key'
+
 
 Windows Live
 ============
