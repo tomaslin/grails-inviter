@@ -92,8 +92,8 @@ log4j = {
 
 
 // inviter plugin
-grails.plugin.inviter.facebook.key='68872945632'
-grails.plugin.inviter.facebook.secret='aeb81b252776b8d2553fa4369b6b271a'
+grails.plugin.inviter.facebook.key='197755966948551'
+grails.plugin.inviter.facebook.secret='5dc5ace6405e5882511e6dd177aa5f77'
 grails.plugin.inviter.yahoo.key='dj0yJmk9T21LU3dnazNxUnJ2JmQ9WVdrOWRGQlBhWFZ4TlRZbWNHbzlNVEV6TkRreU5qUTJNZy0tJnM9Y29uc3VtZXJzZWNyZXQmeD04Nw--'
 grails.plugin.inviter.yahoo.secret= 'a21f29aa15b65c2394a5cd18a5f266eba15fcc91'
 grails.plugin.inviter.google.key='inviter.cloudfoundry.com'

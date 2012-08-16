@@ -65,7 +65,8 @@ The authentication workflow
 Provided Tags
 =============
 
-The plugin includes three tags to make the process of inviting friends easy.
+The plugin includes four tags to make the process of inviting/import friends easy.
+
 
 iv:invitationLink
 -----------------
@@ -75,10 +76,13 @@ This tag creates a link that will point to the desired social network or email p
 params:
 
 		provider - name of the provider
+        pick - true/false if true the displayed form will be only to pick contacts (without sending invites)
 
 usage:
 
-		<iv:invitationLink provider="facebook"> This is a link to facebook </iv:invitationLink>
+		<iv:invitationLink provider="facebook"> This is a link to send invites to your facebook friends</iv:invitationLink>
+        
+		<iv:invitationLink provider="google" pick="true"> This is a link to choose between your google contacts </iv:invitationLink>
 
 
 iv:contacts
@@ -141,6 +145,50 @@ usage:
 				redirectUrl="http://inviter.cloudfoundry.com/success"
 				message="join grails inviter"
 				canEditMessage="true"
+		/>
+
+
+iv:pickForm
+--------------
+
+This tag creates a submit form to interact with the contact selector and tell to a custom action which friends user has chosen.
+
+In this case the real processing of the contacts, is left to the app.
+
+
+params:
+        controller [required] - name of the controller as in g:form tag
+        
+        action [required] - name of the action as in g:form tag
+
+		provider - name of the provider, e.g. facebook
+
+		link - the link to embed to the invitation message
+
+		subject - in emails, the subject of the invitation message
+
+		redirectUrl - the Url to return the user to after invitations have been sent
+
+
+        For facebook:
+
+		description - the description of the link to be sent
+
+		caption - the photo caption
+
+		picture - the image to attach
+
+
+
+usage:
+
+		<iv:messageForm provider="${ provider }"
+				link="http://inviter.cloudfoundry.com"
+				subject="join grails inviter"
+				description="grails inviter"
+				caption="picture caption"
+				picture="http://www.grails.org/static/cXmUZIAv28XIiNgkRiz4RRl21TsGZ5HoGpZw1UITNyV.png"
+				redirectUrl="http://inviter.cloudfoundry.com/success"
 		/>
 
 

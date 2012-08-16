@@ -8,19 +8,44 @@ class InviterController {
 
 	def index = { }
 
-	def invite = {
+	def invite() {
+        /*
+		def service = resolveService(params.provider)
+		def authInfo = service.getAuthDetails(createLink(action: 'contacts', controller: 'inviter', absolute: 'true', params: [provider: params.provider]))
+		if (authInfo.requestToken)
+		{
+			session["${params.provider}_requestToken"] = authInfo.requestToken
+		}
+		redirect(url: authInfo.authUrl)
+        */
+        redirect(url: getAuthUrl(params.provider, 'contacts'))
+	}
 
+	def pick() {
+        /*
 		def service = resolveService(params.provider)
 
-		def authInfo = service.getAuthDetails(createLink(action: 'contacts', controller: 'inviter', absolute: 'true', params: [provider: params.provider]))
+		def authInfo = service.getAuthDetails(createLink(action: 'pickContacts', controller: 'inviter', absolute: 'true', params: [provider: params.provider]))
 
 		if (authInfo.requestToken)
 		{
 			session["${params.provider}_requestToken"] = authInfo.requestToken
 		}
-
-		redirect(url: authInfo.authUrl)
+        */
+		redirect(url: getAuthUrl(params.provider, 'pickContacts'))
 	}
+    
+    private getAuthUrl(provider, action) {
+		def service = resolveService(provider)
+
+		def authInfo = service.getAuthDetails(createLink(action: action, controller: 'inviter', absolute: 'true', params: [provider: provider]))
+
+		if (authInfo.requestToken)
+		{
+			session["${provider}_requestToken"] = authInfo.requestToken
+		}
+        return authInfo.authUrl
+    }
 
 	def sendInvites = {
 		def service = resolveService(params.provider)
@@ -42,12 +67,7 @@ class InviterController {
 			return
 
 		} else {
-		    params.each { k,v ->
-		        println "$k $v"
-		    }
-
-			if (service.useEmail)
-			{
+			if (service.useEmail) {
 				params.addresses.split(',').each { address ->
 					sendMail {
 						to       address
@@ -55,8 +75,7 @@ class InviterController {
 						text     params.message
 					}
 				}
-			} else
-			{
+			} else {
 				params.addresses.split(',').each { address ->
 					def response = service.sendMessage( accessToken: accessToken, link: params.link, message: params.message, description: params.description, contact:address, subject: params.subject )
 
@@ -65,21 +84,24 @@ class InviterController {
 
 				}
 			}
-
 		}
-
-		render 'Your messages have been sent'
-
+		render "Your messages have been sent. See <a href=\"${request.contextPath}/greenmail\">report</a>"
 	}
 
-	def contacts = {
-
+	def contacts() {
 		def service = resolveService(params.provider)
 		def accessToken = service.getAccessToken(params, session["${params.provider}_requestToken"])
 		session["${params.provider}_accessToken"] = accessToken
 		def contacts = service.getContacts(accessToken)
 		render(view: '/inviter/contacts', model: [contacts: contacts, provider: params.provider], plugin: 'inviter')
+	}
 
+	def pickContacts() {
+		def service = resolveService(params.provider)
+		def accessToken = service.getAccessToken(params, session["${params.provider}_requestToken"])
+		session["${params.provider}_accessToken"] = accessToken
+		def contacts = service.getContacts(accessToken)
+		render(view: '/inviter/pick', model: [contacts: contacts, provider: params.provider], plugin: 'inviter')
 	}
 
 	def photo = {
