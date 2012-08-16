@@ -76,19 +76,25 @@ This tag creates a link that will point to the desired social network or email p
 params:
 
 		provider - name of the provider
-        pick - true/false if true the displayed form will be only to pick contacts (without sending invites). default: false
+        pick - true/false if true the displayed form will be only to pick contacts (without sending invites).
+               default: false
 
 usage:
 
-		<iv:invitationLink provider="facebook"> This is a link to send invites to your facebook friends</iv:invitationLink>
+		<iv:invitationLink provider="facebook">
+          This is a link to send invites to your facebook friends
+        </iv:invitationLink>
         
-		<iv:invitationLink provider="google" pick="true"> This is a link to choose between your google contacts </iv:invitationLink>
+		<iv:invitationLink provider="google" pick="true">
+          This is a link to choose between your google contacts
+        </iv:invitationLink>
 
 
 iv:contacts
 -----------
 
-This tag embeds a friend selector from the list of contacts retrieved from the social network. Selected friends are stored in a javascript array called addresses and, if specified, in a hidden field on the same page called addresses.
+This tag embeds a friend selector from the list of contacts retrieved from the social network. 
+Selected friends are stored in a javascript array called addresses and, if specified, in a hidden field on the same page called addresses.
 
 params:
 
@@ -157,6 +163,7 @@ In this case the real processing of the contacts, is left to the app.
 
 
 params:
+
         controller [required] - name of the controller as in g:form tag
         
         action [required] - name of the action as in g:form tag
@@ -214,7 +221,8 @@ The views you can overwrite are:
 
   * inviter/contacts.gsp : the view with the 'invite friends' form
   * inviter/pickContacts.gsp : the view with the 'pick friends' form
-  * 
+  * inviter/sent.gsp : the view displayed after invites have been sent.
+
 
 Use the example within the plugin to guide you.
 
