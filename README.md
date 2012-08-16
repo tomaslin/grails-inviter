@@ -21,7 +21,8 @@ It is similar in functionality to the following social sharing plugins:
 * [Plaxo Social Widget](http://www.plaxo.com/api/widget) - Web  
 * [Jainrain Engage Social Sharing](http://www.janrain.com/products/engage/social-sharing) - Web 
 
-The main difference of this plugin is that it uses Groovy / Grails and can be deeply integrated quickly and easily to any grails site. When possible, the plugin uses each platform's authentication to comply with the policies set by each provider ( rather than scrapping address book information ). 
+The main difference of this plugin is that it uses Groovy / Grails and can be deeply integrated quickly and easily to any grails site.
+When possible, the plugin uses each platform's authentication to comply with the policies set by each provider ( rather than scrapping address book information ). 
 
 Under the hood, the plugin uses the excellent [Scribe oAuth library](https://github.com/fernandezpablo85/scribe-java) by Pablo Fernandez.
 
@@ -48,7 +49,8 @@ This plugin is considered early alpha and should not be used in production.
 Facebook
 --------
 
-Currently, Facebook APIs do not provide a mechanism for directly messaging users. As a result, this plugin implements an invitation by writing on a friend's wall ( similar to the AirBnB invite friends invitation ). The drawback of this approach is that if friends mark your post as Spam or hide it, your application might be flagged as spam. 
+Currently, Facebook APIs do not provide a mechanism for directly messaging users. As a result, this plugin implements an invitation by writing on a friend's wall ( similar to the AirBnB invite friends invitation ). 
+The drawback of this approach is that if friends mark your post as Spam or hide it, your application might be flagged as spam. 
 
 A better alternative is to use the send dialogs provided by facebook instead of this plugin. https://developers.facebook.com/docs/reference/dialogs/send/
 
@@ -58,8 +60,6 @@ Windows Live
 
 This plugin uses the 4.1 version of the windows live connector as the 5.0 version does not provide a way to access emails or send invitations ( http://social.msdn.microsoft.com/Forums/en-US/messengerconnect/thread/1b325483-30f8-4390-bf76-913378fd65d7 ). 
 
-
-The authentication workflow
 
 
 Provided Tags
@@ -76,7 +76,7 @@ This tag creates a link that will point to the desired social network or email p
 params:
 
 		provider - name of the provider
-        pick - true/false if true the displayed form will be only to pick contacts (without sending invites)
+        pick - true/false if true the displayed form will be only to pick contacts (without sending invites). default: false
 
 usage:
 
@@ -182,7 +182,8 @@ params:
 
 usage:
 
-		<iv:messageForm provider="${ provider }"
+		<iv:messageForm controller="${ controller }" action="${ action }"
+                provider="${ provider }"
 				link="http://inviter.cloudfoundry.com"
 				subject="join grails inviter"
 				description="grails inviter"
@@ -204,22 +205,44 @@ The test service returns a list of 20 contacts with emails.
 In test/apps you can find a demo app using [Greenmail Plugin](http://grails.org/plugin/greenmail) to display mail messages not actually sent.
 
 
-Modifying your contacts page
+Modifying your views
 ----------------------------
 
-For most cases, you want to create your own view called inviter/contacts.gsp to include your application settings. Use the example within the plugin to guide you.
+For most cases, you want to create your own views.
+
+The views you can overwrite are: 
+
+  * inviter/contacts.gsp : the view with the 'invite friends' form
+  * inviter/pickContacts.gsp : the view with the 'pick friends' form
+  * 
+
+Use the example within the plugin to guide you.
+
+
+Custom provider
+---------------
+
+To add a new provider, simply create a service with a name ${provider}InviterService implemented needed methods: look at FacebookInviterService and TestInviterService for 
+examples of a service using email and one using custom API.
+
+See DemoInviterService in the test app to see an actual implementation.
 
 
 Configuration
 =============
 
-The plugin requires credentials to be added to each provider used by your application. Please read the Authentication Credentials section on how to configure each social network.
+The plugin requires credentials to be added to each provider used by your application.
+
+Please read the Authentication Credentials section on how to configure each social network.
 
 
 Authentication Credentials
 ==========================
 
-The following section describes where to get each authentication values needed for this application. You can use the config.groovy file included in this plugin as a reference. However, these authentication tokens only work with the inviter.cloudfoundry.com site. 
+The following section describes where to get each authentication values needed for this application. You can use the config.groovy file included in this plugin as a reference. 
+However, these authentication tokens only work with the inviter.cloudfoundry.com site.
+
+NOTE: *You have to explicitly enable any single provider*
 
 
 Facebook
@@ -240,6 +263,7 @@ Click on the About tab for your application, you will see your key and secret in
 
 add these to config.groovy as
 
+    grails.plugins.inviter.facebook.enable = true
 	grails.plugins.inviter.facebook.key = 'your APP ID'
 	grails.plugins.inviter.facebook.secret = 'your App Secret'
 
@@ -260,6 +284,7 @@ You will see your consumer key and secret in the form:
 
 add these to config.groovy as
 
+    grails.plugins.inviter.google.enable = true
 	grails.plugins.inviter.google.key = 'your oAuth Consumer Key'
 	grails.plugins.inviter.google.secret = 'your oAuth Consumer Secret'
 
@@ -282,8 +307,9 @@ You will get a confirmation with your key and token like this:
 
 Add this to your Config.groovy as 
 
-	grails.plugin.inviter.yahoo.key = 'Your key'
-	grails.plugin.inviter.yahoo.secret = 'Your secret'
+    grails.plugins.inviter.yahoo.enable = true
+	grails.plugins.inviter.yahoo.key = 'Your key'
+	grails.plugins.inviter.yahoo.secret = 'Your secret'
 
 
 Twitter
@@ -298,8 +324,9 @@ IMPORTANT: Make sure you select that you want your app to have Read, Write and D
 
 add these to config.groovy as
 
-	grails.plugin.inviter.twitter.key = 'Your Consumer Key'
-	grails.plugin.inviter.twitter.secret = 'Your Consumer Secret'
+    grails.plugins.inviter.twitter.enable = true
+	grails.plugins.inviter.twitter.key = 'Your Consumer Key'
+	grails.plugins.inviter.twitter.secret = 'Your Consumer Secret'
 
 
 LinkedIn
@@ -316,6 +343,7 @@ Once you have completed the details for this page, you will get a key and pass,
 
 Enter these to config.groovy as
 	
+    grails.plugins.inviter.linkedin.enable = true
 	grails.plugins.inviter.linkedin.key = 'your API Key'
 	grails.plugins.inviter.linkedin.secret = 'your Secret Key'
 
@@ -333,6 +361,7 @@ After entering the name of your application, you will get a confirmation screen 
 	
 Enter these to config.groovy as	
 
+    grails.plugins.inviter.windowslive.enable = true
 	grails.plugins.inviter.windowslive.key = 'your client id'
 	grails.plugins.inviter.windowslive.secret = 'your client secret'
 
