@@ -12,7 +12,7 @@
 
 <p>
 <ul>
-	<g:each in="${['test', 'facebook', 'google', 'yahoo', 'twitter', 'linkedin', 'windowslive' ]}" var="provider">
+	<g:each in="${['demo', 'test', 'facebook', 'google', 'yahoo', 'twitter', 'linkedin', 'windowslive' ]}" var="provider">
 		<li>
 			<iv:invitationLink provider="${provider}"><img
 					src="${resource(dir: 'images', file: provider + '.png')}"/> ${provider}</iv:invitationLink>
@@ -24,7 +24,7 @@
 <p>This is a demo of the grails inviter plugin. To save your friends, click on any of the icons below.</p>
 <p>
 <ul>
-	<g:each in="${['test', 'facebook', 'google', 'yahoo', 'twitter', 'linkedin', 'windowslive' ]}" var="provider">
+	<g:each in="${['demo', 'test', 'facebook', 'google', 'yahoo', 'twitter', 'linkedin', 'windowslive' ]}" var="provider">
 		<li>
 			<iv:invitationLink provider="${provider}" pick="true"><img
 					src="${resource(dir: 'images', file: provider + '.png')}"/> ${provider}</iv:invitationLink>
