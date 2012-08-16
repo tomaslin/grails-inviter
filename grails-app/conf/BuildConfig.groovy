@@ -40,21 +40,12 @@ grails.project.dependency.resolution = {
               ":rest-client-builder:1.0.2") {
             export = false
         }
-        
-/*
-
-plugins.hibernate=1.3.7
-plugins.jquery=1.6.1.1
-plugins.mail=1.0-SNAPSHOT
-plugins.release=1.0.0.RC3
-plugins.rest=0.6.1
-plugins.tomcat=1.3.7
-*/
 
         compile ":mail:1.0"
         compile ":rest:0.6.1"
         runtime ":hibernate:$grailsVersion"
-        runtime ":jquery:1.6.1"
+        //runtime ":jquery:1.6.1"
+        runtime ":jquery:1.7.2"
         runtime ":resources:1.1.6"
     }
 }

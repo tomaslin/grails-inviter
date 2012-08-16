@@ -1,13 +1,11 @@
 <html>
 <head><title>Invite Friends</title></head>
 
-<!-- g:javascript library="jquery" plugin="jquery"/ -->
-<!-- g:javascript library="inviter" plugin="inviter"/ -->
-<script type="text/javascript" src="/inviter-demo/static/plugins/jquery-1.6.1/js/jquery/jquery-1.6.1.min.js"></script>
 
-<script type="text/javascript" src="${ resource( dir:'js', file:'inviter.js', plugin:'inviter') }"></script>
-
-<link rel='stylesheet' type='text/css' href="${ resource( dir:'css', file:'inviter.css', plugin:'inviter') }" />
+<!-- layout resources -->
+<r:require module="inviter"/>
+<r:layoutResources/>
+<!-- / -->
 
 <body>
 
@@ -34,5 +32,7 @@
 					canEditMessage="true"
 	/>
 
+
+<r:layoutResources/>
 </body>
 </html>
