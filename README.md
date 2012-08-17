@@ -271,9 +271,9 @@ Click on the About tab for your application, you will see your key and secret in
 
 add these to config.groovy as
 
-    grails.plugins.inviter.facebook.enable = true
-	grails.plugins.inviter.facebook.key = 'your APP ID'
-	grails.plugins.inviter.facebook.secret = 'your App Secret'
+    grails.plugin.inviter.facebook.enable = true
+	grails.plugin.inviter.facebook.key = 'your APP ID'
+	grails.plugin.inviter.facebook.secret = 'your App Secret'
 
 
 Google
@@ -292,9 +292,9 @@ You will see your consumer key and secret in the form:
 
 add these to config.groovy as
 
-    grails.plugins.inviter.google.enable = true
-	grails.plugins.inviter.google.key = 'your oAuth Consumer Key'
-	grails.plugins.inviter.google.secret = 'your oAuth Consumer Secret'
+    grails.plugin.inviter.google.enable = true
+	grails.plugin.inviter.google.key = 'your oAuth Consumer Key'
+	grails.plugin.inviter.google.secret = 'your oAuth Consumer Secret'
 
 
 Yahoo
@@ -315,9 +315,9 @@ You will get a confirmation with your key and token like this:
 
 Add this to your Config.groovy as 
 
-    grails.plugins.inviter.yahoo.enable = true
-	grails.plugins.inviter.yahoo.key = 'Your key'
-	grails.plugins.inviter.yahoo.secret = 'Your secret'
+    grails.plugin.inviter.yahoo.enable = true
+	grails.plugin.inviter.yahoo.key = 'Your key'
+	grails.plugin.inviter.yahoo.secret = 'Your secret'
 
 
 Twitter
@@ -332,9 +332,9 @@ IMPORTANT: Make sure you select that you want your app to have Read, Write and D
 
 add these to config.groovy as
 
-    grails.plugins.inviter.twitter.enable = true
-	grails.plugins.inviter.twitter.key = 'Your Consumer Key'
-	grails.plugins.inviter.twitter.secret = 'Your Consumer Secret'
+    grails.plugin.inviter.twitter.enable = true
+	grails.plugin.inviter.twitter.key = 'Your Consumer Key'
+	grails.plugin.inviter.twitter.secret = 'Your Consumer Secret'
 
 
 LinkedIn
@@ -351,9 +351,9 @@ Once you have completed the details for this page, you will get a key and pass,
 
 Enter these to config.groovy as
 	
-    grails.plugins.inviter.linkedin.enable = true
-	grails.plugins.inviter.linkedin.key = 'your API Key'
-	grails.plugins.inviter.linkedin.secret = 'your Secret Key'
+    grails.plugin.inviter.linkedin.enable = true
+	grails.plugin.inviter.linkedin.key = 'your API Key'
+	grails.plugin.inviter.linkedin.secret = 'your Secret Key'
 
 
 Windows Live
@@ -369,9 +369,9 @@ After entering the name of your application, you will get a confirmation screen 
 	
 Enter these to config.groovy as	
 
-    grails.plugins.inviter.windowslive.enable = true
-	grails.plugins.inviter.windowslive.key = 'your client id'
-	grails.plugins.inviter.windowslive.secret = 'your client secret'
+    grails.plugin.inviter.windowslive.enable = true
+	grails.plugin.inviter.windowslive.key = 'your client id'
+	grails.plugin.inviter.windowslive.secret = 'your client secret'
 
 
 Revision History
