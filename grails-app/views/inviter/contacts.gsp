@@ -1,9 +1,8 @@
 <html>
 <head><title>Invite Friends</title></head>
 
-<g:javascript library="jquery" plugin="jquery"/>
-<g:javascript library="inviter"/>
-<link rel='stylesheet' type='text/css' href="${ resource( dir:'css', file:'inviter.css') }" />
+<r:require module="inviter"/>
+<r:layoutResources/>
 
 <body>
 
@@ -12,8 +11,6 @@
 	</noscript>
 
 	<h2>Pick Friends</h2>
-
-
 
 	<iv:contacts contacts="${contacts}"/>
 
@@ -30,5 +27,6 @@
 					canEditMessage="true"
 	/>
 
+<r:layoutResources/>
 </body>
 </html>

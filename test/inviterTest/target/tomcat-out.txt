@@ -1,1 +1,0 @@
-Server running. Browse to http://localhost:8080/inviterTest

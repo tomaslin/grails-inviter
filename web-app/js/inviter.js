@@ -1,5 +1,5 @@
 var addresses = [];
-var FILTER_BLANK = 'start typing a name';
+var FILTER_BLANK = INVITER_FILTER_BLANK || 'start typing a name';
 
 // adds or removes elements from the list of addresses
 function toggleAddress(address) {
