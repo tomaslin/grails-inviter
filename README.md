@@ -243,7 +243,27 @@ The plugin requires credentials to be added to each provider used by your applic
 
 Please read the Authentication Credentials section on how to configure each social network.
 
+i18n
+----
 
+Plugin uses following keys:
+
+    grails.plugin.inviter.contacts.search = Find friends :
+    grails.plugin.inviter.contacts.selectAll = Select all
+    grails.plugin.inviter.contacts.clearSelection = Deselect all
+    grails.plugin.inviter.invitationForm.submit = Invite friends
+    grails.plugin.inviter.pickForm.submit = Pick friends
+
+To fully customize i18 for your app, overwrite the keys and declare (before the call to inviter.js - so probably before you declare <r:require module="inviter"/> )
+a js variable INVITER_FILTER_BLANK.
+
+Its value is used as placeholder in the search form.
+
+
+    <script>var INVITER_FILTER_BLANK = '<g:message code="a.key.for.contacts.search.placeholder" />';</script>
+    
+    
+    
 Authentication Credentials
 ==========================
 
