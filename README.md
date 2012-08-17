@@ -230,7 +230,7 @@ Use the example within the plugin to guide you.
 Custom provider
 ---------------
 
-To add a new provider, simply create a service with a name ${provider}InviterService implemented needed methods: look at FacebookInviterService and TestInviterService for 
+To add a new provider, simply create a service with a name `${provider}InviterService` implemented needed methods: look at FacebookInviterService and TestInviterService for 
 examples of a service using email and one using custom API.
 
 See DemoInviterService in the test app to see an actual implementation.
@@ -254,8 +254,8 @@ Plugin uses following keys:
     grails.plugin.inviter.invitationForm.submit = Invite friends
     grails.plugin.inviter.pickForm.submit = Pick friends
 
-To fully customize i18 for your app, overwrite the keys and declare (before the call to inviter.js - so probably before you declare <r:require module="inviter"/> )
-a js variable INVITER_FILTER_BLANK.
+To fully customize i18 for your app, overwrite the keys and declare (before the call to inviter.js - so probably before you declare `<r:require module="inviter"/>` )
+a js variable `INVITER_FILTER_BLANK`.
 
 Its value is used as placeholder in the search form.
 
