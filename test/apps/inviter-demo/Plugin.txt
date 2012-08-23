@@ -1,0 +1,9 @@
+
+		build "org.scribe:scribe:1.2.1"
+		runtime "org.scribe:scribe:1.2.1"
+
+        build ":tomcat:$grailsVersion"
+        compile ":mail:1.0"
+        runtime ":hibernate:$grailsVersion"
+        runtime ":jquery:1.7.1" // spring security ui
+        runtime ":resources:1.1.6"
