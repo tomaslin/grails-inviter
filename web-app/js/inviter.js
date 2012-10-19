@@ -1,5 +1,5 @@
 var addresses = [];
-var FILTER_BLANK = INVITER_FILTER_BLANK || 'start typing a name';
+var INVITER_FILTER_BLANK = INVITER_FILTER_BLANK || 'start typing a name';
 
 // adds or removes elements from the list of addresses
 function toggleAddress(address) {
@@ -35,14 +35,14 @@ $(document).ready(function() {
 	});
 
 	$('#filterField').focus(function() {
-		if ($('#filterField').val() == FILTER_BLANK) {
+		if ($('#filterField').val() == INVITER_FILTER_BLANK) {
 			$('#filterField').val('')
 		}
 	})
 
 	$('#filterField').focusout(function() {
 		if ($('#filterField').val() == '') {
-			$('#filterField').val(FILTER_BLANK)
+			$('#filterField').val(INVITER_FILTER_BLANK)
 		}
 	})
 
@@ -66,7 +66,7 @@ $(document).ready(function() {
 
 	}, 500 );
 
-	$('#filterField').val(FILTER_BLANK)
+	$('#filterField').val(INVITER_FILTER_BLANK)
 
 	$('#clearSelection').click(clearSelection);
 	$('#selectAll').click(selectAll);
