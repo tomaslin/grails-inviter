@@ -33,7 +33,6 @@ grails.project.dependency.resolution = {
         compile ":mail:1.0"
         compile ":rest:0.6.1"
         runtime ":hibernate:$grailsVersion"
-        runtime ":jquery:1.7.2"
         runtime ":resources:1.2.RC2"
     }
 }
