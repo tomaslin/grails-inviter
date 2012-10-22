@@ -24,15 +24,13 @@ grails.project.dependency.resolution = {
     }
     
     plugins {
-        build(":tomcat:$grailsVersion",
-              ":release:2.0.3",
+        build(":release:2.0.3",
               ":rest-client-builder:1.0.2") {
             export = false
         }
 
         compile ":mail:1.0"
         compile ":rest:0.6.1"
-        runtime ":hibernate:$grailsVersion"
         runtime ":resources:1.2.RC2"
     }
 }
