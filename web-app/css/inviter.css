@@ -40,7 +40,8 @@ body {
 	font-size: 12px;
 	word-wrap: break-word;
 	overflow: hidden;
-	cursor: pointer
+	cursor: pointer;
+    *display: inline;
 }
 
 .friend img{
