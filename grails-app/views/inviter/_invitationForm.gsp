@@ -16,5 +16,5 @@
 		<g:hiddenField name="message" value="${message}"/>
 	</g:else>
 
-	<g:submitButton name="invite" value="${g.message(code: 'grails.plugin.inviter.invitationForm.submit')}"></g:submitButton>
+	<g:submitButton id="inviter-invite-button" name="invite" value="${g.message(code: 'grails.plugin.inviter.invitationForm.submit')}" class="inviter-button"></g:submitButton>
 </g:form>

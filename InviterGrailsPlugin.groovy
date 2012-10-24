@@ -6,10 +6,7 @@ class InviterGrailsPlugin {
     // the other plugins this plugin depends on
     def dependsOn = [mail:'0.9 > *', rest:'0.6.1' ]
     // resources that are excluded from plugin packaging
-    def pluginExcludes = [
-            "grails-app/views/error.gsp",
-			"test/inviter/grails-app/views/index.gsp"
-    ]
+    def pluginExcludes = [ ]
 
     def author = "Tomas Lin"
     def authorEmail = "tomaslin@gmail.com"

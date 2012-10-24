@@ -230,7 +230,7 @@ Use the example within the plugin to guide you.
 Custom provider
 ---------------
 
-To add a new provider, simply create a service with a name `${provider}InviterService` implemented needed methods: look at FacebookInviterService and TestInviterService for 
+To add a new provider, simply create a service with a name `${provider}InviterService` implementing needed methods: look at FacebookInviterService and TestInviterService for 
 examples of a service using email and one using custom API.
 
 See DemoInviterService in the test app to see an actual implementation.
