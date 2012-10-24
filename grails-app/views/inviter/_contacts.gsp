@@ -5,7 +5,7 @@
     </div>
 </div>
 
-<div class="friends">
+<div id="inviter-friends" class="friends">
     <g:each in="${ contacts }" var="contact">
         <div class="friend" data-email="${contact.address}">
             <g:if test="${contact.photo}">
