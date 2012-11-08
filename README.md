@@ -1,16 +1,6 @@
 Grails Inviter Plugin
 =====================
 
-***
-
-This is not the official repo for Grails Inviter Plugin.
-
-Do NOT fork this repo.
-
-The official repo is [tomaslin / grails-inviter](https://github.com/tomaslin/grails-inviter)
-
-***
-
 The grails inviter plugin allows you to quickly import contacts from various social networks and mail providers into your application. 
 
 You can see it in action at http://inviter.cloudfoundry.com
@@ -396,6 +386,8 @@ Enter these to config.groovy as
 
 Revision History
 ================
+
+0.3 - Custom changes by enr
 
 0.2.1 - Select All and Deselect All.
 
